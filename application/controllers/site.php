@@ -162,7 +162,7 @@ class Site extends CI_Controller
         $elements[3]->alias="socialid";
         
         $elements[4]=new stdClass();
-        $elements[4]->field="`logintype`.`name`";
+        $elements[4]->field="`user`.`logintype`";
         $elements[4]->sort="1";
         $elements[4]->header="Logintype";
         $elements[4]->alias="logintype";

@@ -54,7 +54,7 @@
             <div class=" form-group">
                 <label class="col-sm-2 control-label">logintype</label>
                 <div class="col-sm-4">
-                    <?php echo form_dropdown( 'logintype',$logintype,set_value( 'logintype',$before->logintype),'class="chzn-select form-control" data-placeholder="Choose a Logintype..."'); ?>
+                    <input type="text" id="normal-field" class="form-control" name="logintype" value="<?php echo set_value('logintype',$before->logintype);?>">
                 </div>
             </div>
 
