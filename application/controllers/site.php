@@ -3527,25 +3527,46 @@ $this->load->view("redirect",$data);
 }
 public function editconfig()
 {
-$access=array("1");
-$this->checkaccess($access);
-$id=$this->input->get('id');
-$type=$this->config_model->geteditpage($id);
-    if($type==1){
-        $data["page"]="editconfig";
-        $data[ 'type' ] =$this->user_model->gettypedropdown();
-        $data["title"]="Edit config";
-        $data["before"]=$this->config_model->beforeedit($this->input->get("id"));
-        $this->load->view("template",$data);
-    }
-    else if($type==2)
+    $access=array("1");
+    $this->checkaccess($access);
+    $id=$this->input->get('id');
+    $type=$this->config_model->geteditpage($id);
+    switch($type)
     {
-        $data["page"]="editconfig1";
-        $data[ 'type' ] =$this->user_model->gettypedropdown();
-        $data["title"]="Edit config";
-        $data["before"]=$this->config_model->beforeedit($this->input->get("id"));
-        $this->load->view("template",$data);
+        case 1: {
+            $data["page"]="editconfigtext";
+            $data["title"]="Edit config";
+        }
+            break;
+        case 2: {
+            $data["page"]="editconfigimage";
+            $data["title"]="Edit config";
+        }
+            break;
+        case 3: {
+            $data["page"]="dropdown";
+            $data["title"]="Edit config";
+        }
+            break;
+        case 4: {
+            $data["page"]="login";
+            $data["title"]="Edit config";
+        }
+            break;   
+        case 5: {
+            $data["page"]="blog";
+            $data["title"]="Edit config";
+        }
+            break; 
+        case 6: {
+            $data["page"]="gallery";
+            $data["title"]="Edit config";
+        }
+            break;     
     }
+    $data[ 'type' ] =$this->user_model->gettypedropdown();
+    $data["before"]=$this->config_model->beforeedit($this->input->get("id"));
+    $this->load->view("templateconfig",$data);
 }
 public function editconfigsubmit()
 {
