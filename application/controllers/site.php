@@ -3540,27 +3540,27 @@ public function editconfig()
             break;
         case 2: {
             $data["page"]="editconfigimage";
-            $data["title"]="Edit config";
+            $data["title"]="Edit config Image";
         }
             break;
         case 3: {
             $data["page"]="dropdown";
-            $data["title"]="Edit config";
+            $data["title"]="Drop Down";
         }
             break;
         case 4: {
             $data["page"]="login";
-            $data["title"]="Edit config";
+            $data["title"]="Login";
         }
             break;   
         case 5: {
             $data["page"]="blog";
-            $data["title"]="Edit config";
+            $data["title"]="Blog";
         }
             break; 
         case 6: {
             $data["page"]="gallery";
-            $data["title"]="Edit config";
+            $data["title"]="Gallery";
         }
             break;     
     }

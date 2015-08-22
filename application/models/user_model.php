@@ -310,15 +310,11 @@ class User_model extends CI_Model
 	}
     public function gettypedropdown()
 	{
-		$query=$this->db->query("SELECT * FROM `type`  ORDER BY `id` ASC")->result();
 		$return=array(
-		"" => "Select"
+		"" => "Select",
+		"1" => "Text",
+		"2" => "File"
 		);
-		foreach($query as $row)
-		{
-			$return[$row->id]=$row->name;
-		}
-
 		return $return;
 	}
     

@@ -35,7 +35,7 @@
 <script>
 function drawtable(resultrow) {
     if(resultrow.type==1){
-    resultrow.type="text";
+    resultrow.type="Text";
     }
     else if(resultrow.type==2){
     resultrow.type="File";
