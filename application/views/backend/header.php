@@ -49,7 +49,7 @@
     <script src="<?php echo base_url('assets/js/main.js'); ?>"></script>
     <script src="<?php echo base_url('assets/js/nifty.min.js'); ?>"></script>
     <script src="<?php echo base_url('assets/plugins/pace/pace.min.js'); ?>"></script>
-    <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&amp;subset=latin" rel="stylesheet">
+<!--    <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&amp;subset=latin" rel="stylesheet">-->
     <script type="text/javascript">
         var base_url = "<?php echo base_url(); ?>";
         newbase_url = base_url;
