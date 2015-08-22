@@ -39,7 +39,7 @@
 <label class="col-sm-2 control-label" for="normal-field">&nbsp;</label>
 <div class="col-sm-4">
 <button type="submit" class="btn btn-primary">Save</button>
-<a href='<?php echo site_url("site/viewvideogalleryvideo"); ?>' class='btn btn-secondary'>Cancel</a>
+<a href='<?php echo site_url("site/viewvideogalleryvideo?id=").$this->input->get('videoid'); ?>' class='btn btn-secondary'>Cancel</a>
 </div>
 </div>
 </form>

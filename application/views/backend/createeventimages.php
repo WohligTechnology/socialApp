@@ -1,5 +1,5 @@
 <div id="page-title">
-<a href="<?php echo site_url("site/vieweventimages"); ?>" class="btn btn-primary btn-labeled fa fa-arrow-left margined pull-right">Back</a>
+<a href="<?php echo site_url("site/vieweventimages?id=").$this->input->get('id'); ?>" class="btn btn-primary btn-labeled fa fa-arrow-left margined pull-right">Back</a>
 <h1 class="page-header text-overflow">Eventimages Details </h1>
 </div>
 <div id="page-content">
@@ -16,7 +16,7 @@ Create Eventimages </h3>
 <div class=" form-group">
 <label class="col-sm-2 control-label" for="normal-field">event</label>
 <div class="col-sm-4">
-<?php echo form_dropdown("event",$event,set_value('event'),"class='chzn-select form-control'");?>
+<?php echo form_dropdown("event",$event,set_value('event',$this->input->get('id')),"class='chzn-select form-control'");?>
 </div>
 </div>
 <div class=" form-group">
@@ -41,7 +41,7 @@ Create Eventimages </h3>
 <label class="col-sm-2 control-label" for="normal-field">&nbsp;</label>
 <div class="col-sm-4">
 <button type="submit" class="btn btn-primary">Save</button>
-<a href="<?php echo site_url("site/vieweventimages"); ?>" class="btn btn-secondary">Cancel</a>
+<a href="<?php echo site_url("site/vieweventimages?id=").$this->input->get('id'); ?>" class="btn btn-secondary">Cancel</a>
 </div>
 </div>
 </form>

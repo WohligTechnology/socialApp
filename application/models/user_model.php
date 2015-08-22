@@ -308,6 +308,16 @@ class User_model extends CI_Model
 		
 		return $return;
 	}
+    public function gettypedropdown()
+	{
+		$return=array(
+            "" => "Select",
+            "0" => "Text",
+            "1" => "File",
+		);
+		
+		return $return;
+	}
     
 	function changestatus($id)
 	{

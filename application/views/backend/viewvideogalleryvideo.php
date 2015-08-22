@@ -1,5 +1,5 @@
 <div id="page-title">
-<a class="btn btn-primary btn-labeled fa fa-plus margined pull-right" href="<?php echo site_url("site/createvideogalleryvideo"); ?>">Create</a>
+<a class="btn btn-primary btn-labeled fa fa-plus margined pull-right" href="<?php echo site_url("site/createvideogalleryvideo?id=").$this->input->get('id'); ?>">Create</a>
 <h1 class="page-header text-overflow">Videogalleryvideo Details </h1>
 </div>
 <div id="page-content">
@@ -34,7 +34,7 @@
 </div>
 <script>
 function drawtable(resultrow) {
-return "<tr><td>" + resultrow.id + "</td><td>" + resultrow.order + "</td><td>" + resultrow.status + "</td><td>" + resultrow.videogallery + "</td><td><a class='btn btn-primary btn-xs' href='<?php echo site_url('site/editvideogalleryvideo?id=');?>"+resultrow.id+"'><i class='icon-pencil'></i></a><a class='btn btn-danger btn-xs' onclick=return confirm(\"Are you sure you want to delete?\") href='<?php echo site_url('site/deletevideogalleryvideo?id='); ?>"+resultrow.id+"'><i class='icon-trash '></i></a></td></tr>";
+return "<tr><td>" + resultrow.id + "</td><td>" + resultrow.order + "</td><td>" + resultrow.status + "</td><td>" + resultrow.videogallery + "</td><td><a class='btn btn-primary btn-xs' href='<?php echo site_url('site/editvideogalleryvideo?id=');?>"+resultrow.id+"&videoid="+resultrow.videoid+"'><i class='icon-pencil'></i></a><a class='btn btn-danger btn-xs' onclick=return confirm(\"Are you sure you want to delete?\") href='<?php echo site_url('site/deletevideogalleryvideo?id='); ?>"+resultrow.id+"&videoid="+resultrow.videoid+"'><i class='icon-trash '></i></a></td></tr>";
 }
 generatejquery("<?php echo $base_url;?>");
 </script>

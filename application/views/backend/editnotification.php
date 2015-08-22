@@ -17,20 +17,7 @@
 <?php echo form_dropdown("event",$event,set_value('event',$before->event),"class='chzn-select form-control'");?>
 </div>
 </div>
-<!--
-<div class=" form-group">
-<label class="col-sm-2 control-label" for="normal-field">Video Gallery Video</label>
-<div class="col-sm-4">
-<?php echo form_dropdown("videogalleryvideo",$videogalleryvideo,set_value('videogalleryvideo',$before->videogalleryvideo),"class='chzn-select form-control'");?>
-</div>
-</div>
-<div class=" form-group">
-<label class="col-sm-2 control-label" for="normal-field">Gallery Image</label>
-<div class="col-sm-4">
-<?php echo form_dropdown("galleryimage",$galleryimage,set_value('galleryimage',$before->galleryimage),"class='chzn-select form-control'");?>
-</div>
-</div>
--->
+
 <div class=" form-group">
 <label class="col-sm-2 control-label" for="normal-field">article</label>
 <div class="col-sm-4">
@@ -84,3 +71,4 @@
 </form>
 </div>
 </section>
+

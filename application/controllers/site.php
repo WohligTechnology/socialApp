@@ -401,6 +401,27 @@ public function createarticles()
 $access=array("1");
 $this->checkaccess($access);
 $data["page"]="createarticles";
+    
+    $json=array();
+            $json[0]=new stdClass();
+            $json[0]->placeholder="";
+            $json[0]->value="";
+            $json[0]->label="Meta Title";
+            $json[0]->type="text";
+            $json[0]->options="";
+            $json[0]->classes="";
+    
+            $json[1]=new stdClass();
+            $json[1]->placeholder="";
+            $json[1]->value="";
+            $json[1]->label="Meta Description";
+            $json[1]->type="text";
+            $json[1]->options="";
+            $json[1]->classes="";
+    
+            $data["fieldjson"]=$json;
+        
+    
 $data[ 'status' ] =$this->user_model->getstatusdropdown();
 $data["title"]="Create articles";
 $this->load->view("template",$data);
@@ -552,6 +573,24 @@ public function createfrontmenu()
 $access=array("1");
 $this->checkaccess($access);
 $data["page"]="createfrontmenu";
+$json=array();
+            $json[0]=new stdClass();
+            $json[0]->placeholder="";
+            $json[0]->value="";
+            $json[0]->label="Meta Title";
+            $json[0]->type="text";
+            $json[0]->options="";
+            $json[0]->classes="";
+    
+            $json[1]=new stdClass();
+            $json[1]->placeholder="";
+            $json[1]->value="";
+            $json[1]->label="Meta Description";
+            $json[1]->type="text";
+            $json[1]->options="";
+            $json[1]->classes="";
+    
+            $data["fieldjson"]=$json;
 $data[ 'status' ] =$this->user_model->getstatusdropdown();
 $data[ 'parent' ] =$this->user_model->getfrontmenudropdown();
 $data["title"]="Create frontmenu";
@@ -706,6 +745,24 @@ public function creategallery()
 $access=array("1");
 $this->checkaccess($access);
 $data["page"]="creategallery";
+    $json=array();
+            $json[0]=new stdClass();
+            $json[0]->placeholder="";
+            $json[0]->value="";
+            $json[0]->label="Meta Title";
+            $json[0]->type="text";
+            $json[0]->options="";
+            $json[0]->classes="";
+    
+            $json[1]=new stdClass();
+            $json[1]->placeholder="";
+            $json[1]->value="";
+            $json[1]->label="Meta Description";
+            $json[1]->type="text";
+            $json[1]->options="";
+            $json[1]->classes="";
+    
+            $data["fieldjson"]=$json;
 $data[ 'status' ] =$this->user_model->getstatusdropdown();
 $data["title"]="Create gallery";
 $this->load->view("template",$data);
@@ -745,10 +802,13 @@ public function editgallery()
 $access=array("1");
 $this->checkaccess($access);
 $data["page"]="editgallery";
+$data["page2"]="block/galleryblock";
 $data[ 'status' ] =$this->user_model->getstatusdropdown();
+$data[ 'before1' ] =$this->input->get('id');
+$data[ 'before2' ] =$this->input->get('id');
 $data["title"]="Edit gallery";
 $data["before"]=$this->gallery_model->beforeedit($this->input->get("id"));
-$this->load->view("template",$data);
+$this->load->view("templatewith2",$data);
 }
 public function editgallerysubmit()
 {
@@ -796,14 +856,18 @@ public function viewgalleryimage()
 $access=array("1");
 $this->checkaccess($access);
 $data["page"]="viewgalleryimage";
+$data["page2"]="block/galleryblock";
 $data[ 'status' ] =$this->user_model->getstatusdropdown();
+$data[ 'before1' ] =$this->input->get('id');
+$data[ 'before2' ] =$this->input->get('id');
 $data[ 'gallery' ] =$this->user_model->getgallerydropdown();
-$data["base_url"]=site_url("site/viewgalleryimagejson");
+$data["base_url"]=site_url("site/viewgalleryimagejson?id=".$this->input->get('id'));
 $data["title"]="View galleryimage";
-$this->load->view("template",$data);
+$this->load->view("templatewith2",$data);
 }
 function viewgalleryimagejson()
 {
+ $id=$this->input->get('id');   
 $elements=array();
 $elements[0]=new stdClass();
 $elements[0]->field="`webapp_galleryimage`.`id`";
@@ -830,6 +894,12 @@ $elements[4]->field="`webapp_galleryimage`.`image`";
 $elements[4]->sort="1";
 $elements[4]->header="Image";
 $elements[4]->alias="image";
+    
+$elements[5]=new stdClass();
+$elements[5]->field="`webapp_galleryimage`.`gallery`";
+$elements[5]->sort="1";
+$elements[5]->header="galleryid";
+$elements[5]->alias="galleryid";
 $search=$this->input->get_post("search");
 $pageno=$this->input->get_post("pageno");
 $orderby=$this->input->get_post("orderby");
@@ -844,7 +914,7 @@ if($orderby=="")
 $orderby="id";
 $orderorder="ASC";
 }
-$data["message"]=$this->chintantable->query($pageno,$maxrow,$orderby,$orderorder,$search,$elements,"FROM `webapp_galleryimage` LEFT OUTER JOIN `statuses` ON `statuses`.`id`=`webapp_galleryimage`.`status` LEFT OUTER JOIN `webapp_gallery` ON `webapp_gallery`.`id`=`webapp_galleryimage`.`gallery`");
+$data["message"]=$this->chintantable->query($pageno,$maxrow,$orderby,$orderorder,$search,$elements,"FROM `webapp_galleryimage` LEFT OUTER JOIN `statuses` ON `statuses`.`id`=`webapp_galleryimage`.`status` LEFT OUTER JOIN `webapp_gallery` ON `webapp_gallery`.`id`=`webapp_galleryimage`.`gallery`","WHERE `webapp_galleryimage`.`gallery`='$id'");
 $this->load->view("json",$data);
 }
 
@@ -853,10 +923,13 @@ public function creategalleryimage()
 $access=array("1");
 $this->checkaccess($access);
 $data["page"]="creategalleryimage";
+$data["page2"]="block/galleryblock";
 $data[ 'status' ] =$this->user_model->getstatusdropdown();
 $data[ 'gallery' ] =$this->user_model->getgallerydropdown();
+$data[ 'before1' ] =$this->input->get('id');
+$data[ 'before2' ] =$this->input->get('id');
 $data["title"]="Create galleryimage";
-$this->load->view("template",$data);
+$this->load->view("templatewith2",$data);
 }
 public function creategalleryimagesubmit() 
 {
@@ -921,8 +994,8 @@ if($this->galleryimage_model->create($gallery,$order,$status,$image,$alt)==0)
 $data["alerterror"]="New galleryimage could not be created.";
 else
 $data["alertsuccess"]="galleryimage created Successfully.";
-$data["redirect"]="site/viewgalleryimage";
-$this->load->view("redirect",$data);
+$data["redirect"]="site/viewgalleryimage?id=".$gallery;
+$this->load->view("redirect2",$data);
 }
 }
 public function editgalleryimage()
@@ -930,11 +1003,16 @@ public function editgalleryimage()
 $access=array("1");
 $this->checkaccess($access);
 $data["page"]="editgalleryimage";
+$data["page2"]="block/galleryblock";
 $data[ 'status' ] =$this->user_model->getstatusdropdown();
+$getgallery=$this->galleryimage_model->beforeedit($this->input->get("gallery"));
+$getid=$this->galleryimage_model->beforeedit($this->input->get("id"));
+$data[ 'before1' ] =$this->input->get('galleryid');
+$data[ 'before2' ] =$this->input->get('galleryid');
 $data[ 'gallery' ] =$this->user_model->getgallerydropdown();
 $data["title"]="Edit galleryimage";
 $data["before"]=$this->galleryimage_model->beforeedit($this->input->get("id"));
-$this->load->view("template",$data);
+$this->load->view("templatewith2",$data);
 }
 public function editgalleryimagesubmit()
 {
@@ -1009,8 +1087,8 @@ if($this->galleryimage_model->edit($id,$gallery,$order,$status,$image,$alt)==0)
 $data["alerterror"]="New galleryimage could not be Updated.";
 else
 $data["alertsuccess"]="galleryimage Updated Successfully.";
-$data["redirect"]="site/viewgalleryimage";
-$this->load->view("redirect",$data);
+$data["redirect"]="site/viewgalleryimage?id=".$gallery;
+$this->load->view("redirect2",$data);
 }
 }
 public function deletegalleryimage()
@@ -1018,8 +1096,8 @@ public function deletegalleryimage()
 $access=array("1");
 $this->checkaccess($access);
 $this->galleryimage_model->delete($this->input->get("id"));
-$data["redirect"]="site/viewgalleryimage";
-$this->load->view("redirect",$data);
+$data["redirect"]="site/viewgalleryimage?id=".$this->input->get('galleryid');
+$this->load->view("redirect2",$data);
 }
 public function viewvideogallery()
 {
@@ -1081,6 +1159,24 @@ public function createvideogallery()
 $access=array("1");
 $this->checkaccess($access);
 $data["page"]="createvideogallery";
+$json=array();
+            $json[0]=new stdClass();
+            $json[0]->placeholder="";
+            $json[0]->value="";
+            $json[0]->label="Meta Title";
+            $json[0]->type="text";
+            $json[0]->options="";
+            $json[0]->classes="";
+    
+            $json[1]=new stdClass();
+            $json[1]->placeholder="";
+            $json[1]->value="";
+            $json[1]->label="Meta Description";
+            $json[1]->type="text";
+            $json[1]->options="";
+            $json[1]->classes="";
+    
+            $data["fieldjson"]=$json;
 $data[ 'status' ] =$this->user_model->getstatusdropdown();
 $data[ 'videogallery' ] =$this->user_model->getvideogallerydropdown();
 $data["title"]="Create videogallery";
@@ -1122,11 +1218,14 @@ public function editvideogallery()
 $access=array("1");
 $this->checkaccess($access);
 $data["page"]="editvideogallery";
+$data["page2"]="block/videoblock";
+$data["before1"]=$this->input->get('id');
+$data["before2"]=$this->input->get('id');
 $data[ 'videogallery' ] =$this->user_model->getvideogallerydropdown();
 $data[ 'status' ] =$this->user_model->getstatusdropdown();
 $data["title"]="Edit videogallery";
 $data["before"]=$this->videogallery_model->beforeedit($this->input->get("id"));
-$this->load->view("template",$data);
+$this->load->view("templatewith2",$data);
 }
 public function editvideogallerysubmit()
 {
@@ -1175,12 +1274,16 @@ public function viewvideogalleryvideo()
 $access=array("1");
 $this->checkaccess($access);
 $data["page"]="viewvideogalleryvideo";
-$data["base_url"]=site_url("site/viewvideogalleryvideojson");
+$data["page2"]="block/videoblock";
+$data["before1"]=$this->input->get('id');
+$data["before2"]=$this->input->get('id');
+$data["base_url"]=site_url("site/viewvideogalleryvideojson?id=").$this->input->get('id');
 $data["title"]="View videogalleryvideo";
-$this->load->view("template",$data);
+$this->load->view("templatewith2",$data);
 }
 function viewvideogalleryvideojson()
 {
+$id=$this->input->get('id');
 $elements=array();
 $elements[0]=new stdClass();
 $elements[0]->field="`webapp_videogalleryvideo`.`id`";
@@ -1207,6 +1310,12 @@ $elements[4]->field="`webapp_videogalleryvideo`.`url`";
 $elements[4]->sort="1";
 $elements[4]->header="Url";
 $elements[4]->alias="url";
+    
+$elements[5]=new stdClass();
+$elements[5]->field="`webapp_videogalleryvideo`.`videogallery`";
+$elements[5]->sort="1";
+$elements[5]->header="videoid";
+$elements[5]->alias="videoid";
 $search=$this->input->get_post("search");
 $pageno=$this->input->get_post("pageno");
 $orderby=$this->input->get_post("orderby");
@@ -1221,7 +1330,7 @@ if($orderby=="")
 $orderby="id";
 $orderorder="ASC";
 }
-$data["message"]=$this->chintantable->query($pageno,$maxrow,$orderby,$orderorder,$search,$elements,"FROM `webapp_videogalleryvideo` LEFT OUTER JOIN `statuses` ON `statuses`.`id`=`webapp_videogalleryvideo`.`status` LEFT OUTER JOIN `webapp_videogallery` ON `webapp_videogallery`.`id`=`webapp_videogalleryvideo`.`videogallery`");
+$data["message"]=$this->chintantable->query($pageno,$maxrow,$orderby,$orderorder,$search,$elements,"FROM `webapp_videogalleryvideo` LEFT OUTER JOIN `statuses` ON `statuses`.`id`=`webapp_videogalleryvideo`.`status` LEFT OUTER JOIN `webapp_videogallery` ON `webapp_videogallery`.`id`=`webapp_videogalleryvideo`.`videogallery`","WHERE `webapp_videogalleryvideo`.`videogallery`='$id'");
 $this->load->view("json",$data);
 }
 
@@ -1230,10 +1339,13 @@ public function createvideogalleryvideo()
 $access=array("1");
 $this->checkaccess($access);
 $data["page"]="createvideogalleryvideo";
+$data["page2"]="block/videoblock";
+$data["before1"]=$this->input->get('id');
+$data["before2"]=$this->input->get('id');
 $data[ 'status' ] =$this->user_model->getstatusdropdown();
 $data[ 'videogallery' ] =$this->user_model->getvideogallerydropdown();
 $data["title"]="Create videogalleryvideo";
-$this->load->view("template",$data);
+$this->load->view("templatewith2",$data);
 }
 public function createvideogalleryvideosubmit() 
 {
@@ -1263,8 +1375,8 @@ if($this->videogalleryvideo_model->create($order,$status,$videogallery,$url,$alt
 $data["alerterror"]="New videogalleryvideo could not be created.";
 else
 $data["alertsuccess"]="videogalleryvideo created Successfully.";
-$data["redirect"]="site/viewvideogalleryvideo";
-$this->load->view("redirect",$data);
+$data["redirect"]="site/viewvideogalleryvideo?id=".$videogallery;
+$this->load->view("redirect2",$data);
 }
 }
 public function editvideogalleryvideo()
@@ -1272,11 +1384,14 @@ public function editvideogalleryvideo()
 $access=array("1");
 $this->checkaccess($access);
 $data["page"]="editvideogalleryvideo";
+$data["page2"]="block/videoblock";
+$data["before1"]=$this->input->get('videoid');
+$data["before2"]=$this->input->get('videoid');
 $data[ 'status' ] =$this->user_model->getstatusdropdown();
 $data[ 'videogallery' ] =$this->user_model->getvideogallerydropdown();
 $data["title"]="Edit videogalleryvideo";
 $data["before"]=$this->videogalleryvideo_model->beforeedit($this->input->get("id"));
-$this->load->view("template",$data);
+$this->load->view("templatewith2",$data);
 }
 public function editvideogalleryvideosubmit()
 {
@@ -1309,8 +1424,8 @@ if($this->videogalleryvideo_model->edit($id,$order,$status,$videogallery,$url,$a
 $data["alerterror"]="New videogalleryvideo could not be Updated.";
 else
 $data["alertsuccess"]="videogalleryvideo Updated Successfully.";
-$data["redirect"]="site/viewvideogalleryvideo";
-$this->load->view("redirect",$data);
+$data["redirect"]="site/viewvideogalleryvideo?id=".$videogallery;
+$this->load->view("redirect2",$data);
 }
 }
 public function deletevideogalleryvideo()
@@ -1318,8 +1433,8 @@ public function deletevideogalleryvideo()
 $access=array("1");
 $this->checkaccess($access);
 $this->videogalleryvideo_model->delete($this->input->get("id"));
-$data["redirect"]="site/viewvideogalleryvideo";
-$this->load->view("redirect",$data);
+$data["redirect"]="site/viewvideogalleryvideo?id=".$this->input->get('videoid');
+$this->load->view("redirect2",$data);
 }
 public function viewevents()
 {
@@ -1421,10 +1536,14 @@ public function editevents()
 $access=array("1");
 $this->checkaccess($access);
 $data["page"]="editevents";
+$data["page2"]="block/eventblock";
+$data["before1"]=$this->input->get('id');
+$data["before2"]=$this->input->get('id');
+$data["before3"]=$this->input->get('id');
 $data["title"]="Edit events";
 $data[ 'status' ] =$this->user_model->getstatusdropdown();
 $data["before"]=$this->events_model->beforeedit($this->input->get("id"));
-$this->load->view("template",$data);
+$this->load->view("templatewith2",$data);
 }
 public function editeventssubmit()
 {
@@ -1472,12 +1591,17 @@ public function vieweventvideo()
 $access=array("1");
 $this->checkaccess($access);
 $data["page"]="vieweventvideo";
-$data["base_url"]=site_url("site/vieweventvideojson");
+$data["page2"]="block/eventblock";
+$data["before1"]=$this->input->get('id');
+$data["before2"]=$this->input->get('id');
+$data["before3"]=$this->input->get('id');
+$data["base_url"]=site_url("site/vieweventvideojson?id=").$this->input->get('id');
 $data["title"]="View eventvideo";
-$this->load->view("template",$data);
+$this->load->view("templatewith2",$data);
 }
 function vieweventvideojson()
 {
+$id=$this->input->get('id');
 $elements=array();
 $elements[0]=new stdClass();
 $elements[0]->field="`webapp_eventvideo`.`id`";
@@ -1504,6 +1628,12 @@ $elements[4]->field="`webapp_eventvideo`.`order`";
 $elements[4]->sort="1";
 $elements[4]->header="Order";
 $elements[4]->alias="order";
+    
+$elements[5]=new stdClass();
+$elements[5]->field="`webapp_eventvideo`.`event`";
+$elements[5]->sort="1";
+$elements[5]->header="eventid";
+$elements[5]->alias="eventid";
 $search=$this->input->get_post("search");
 $pageno=$this->input->get_post("pageno");
 $orderby=$this->input->get_post("orderby");
@@ -1518,7 +1648,7 @@ if($orderby=="")
 $orderby="id";
 $orderorder="ASC";
 }
-$data["message"]=$this->chintantable->query($pageno,$maxrow,$orderby,$orderorder,$search,$elements,"FROM `webapp_eventvideo` LEFT OUTER JOIN `statuses` ON `statuses`.`id`=`webapp_eventvideo`.`status` LEFT OUTER JOIN `webapp_videogallery` ON `webapp_videogallery`.`id`=`webapp_eventvideo`.`videogallery` LEFT OUTER JOIN `webapp_events` ON `webapp_events`.`id`=`webapp_eventvideo`.`event`");
+$data["message"]=$this->chintantable->query($pageno,$maxrow,$orderby,$orderorder,$search,$elements,"FROM `webapp_eventvideo` LEFT OUTER JOIN `statuses` ON `statuses`.`id`=`webapp_eventvideo`.`status` LEFT OUTER JOIN `webapp_videogallery` ON `webapp_videogallery`.`id`=`webapp_eventvideo`.`videogallery` LEFT OUTER JOIN `webapp_events` ON `webapp_events`.`id`=`webapp_eventvideo`.`event`","WHERE `webapp_eventvideo`.`videogallery`='$id'");
 $this->load->view("json",$data);
 }
 
@@ -1527,11 +1657,15 @@ public function createeventvideo()
 $access=array("1");
 $this->checkaccess($access);
 $data["page"]="createeventvideo";
+$data["page2"]="block/eventblock";
+$data["before1"]=$this->input->get('id');
+$data["before2"]=$this->input->get('id');
+$data["before3"]=$this->input->get('id');
 $data[ 'status' ] =$this->user_model->getstatusdropdown();
 $data[ 'event' ] =$this->user_model->geteventsdropdown();
 $data[ 'videogallery' ] =$this->user_model->getvideogallerydropdown();
 $data["title"]="Create eventvideo";
-$this->load->view("template",$data);
+$this->load->view("templatewith2",$data);
 }
 public function createeventvideosubmit() 
 {
@@ -1561,8 +1695,8 @@ if($this->eventvideo_model->create($event,$videogallery,$status,$order)==0)
 $data["alerterror"]="New eventvideo could not be created.";
 else
 $data["alertsuccess"]="eventvideo created Successfully.";
-$data["redirect"]="site/vieweventvideo";
-$this->load->view("redirect",$data);
+$data["redirect"]="site/vieweventvideo?id=".$event;
+$this->load->view("redirect2",$data);
 }
 }
 public function editeventvideo()
@@ -1570,12 +1704,16 @@ public function editeventvideo()
 $access=array("1");
 $this->checkaccess($access);
 $data["page"]="editeventvideo";
+$data["page2"]="block/eventblock";
+$data["before1"]=$this->input->get('eventid');
+$data["before2"]=$this->input->get('eventid');
+$data["before3"]=$this->input->get('eventid');
 $data[ 'videogallery' ] =$this->user_model->getvideogallerydropdown();
 $data[ 'event' ] =$this->user_model->geteventsdropdown();
 $data[ 'status' ] =$this->user_model->getstatusdropdown();
 $data["title"]="Edit eventvideo";
 $data["before"]=$this->eventvideo_model->beforeedit($this->input->get("id"));
-$this->load->view("template",$data);
+$this->load->view("templatewith2",$data);
 }
 public function editeventvideosubmit()
 {
@@ -1608,8 +1746,8 @@ if($this->eventvideo_model->edit($id,$event,$videogallery,$status,$order)==0)
 $data["alerterror"]="New eventvideo could not be Updated.";
 else
 $data["alertsuccess"]="eventvideo Updated Successfully.";
-$data["redirect"]="site/vieweventvideo";
-$this->load->view("redirect",$data);
+$data["redirect"]="site/vieweventvideo?id=".$event;
+$this->load->view("redirect2",$data);
 }
 }
 public function deleteeventvideo()
@@ -1617,20 +1755,25 @@ public function deleteeventvideo()
 $access=array("1");
 $this->checkaccess($access);
 $this->eventvideo_model->delete($this->input->get("id"));
-$data["redirect"]="site/vieweventvideo";
-$this->load->view("redirect",$data);
+$data["redirect"]="site/vieweventvideo?id=".$this->input->get('eventid');
+$this->load->view("redirect2",$data);
 }
 public function vieweventimages()
 {
 $access=array("1");
 $this->checkaccess($access);
 $data["page"]="vieweventimages";
-$data["base_url"]=site_url("site/vieweventimagesjson");
+$data["page2"]="block/eventblock";
+$data["before1"]=$this->input->get('id');
+$data["before2"]=$this->input->get('id');
+$data["before3"]=$this->input->get('id');
+$data["base_url"]=site_url("site/vieweventimagesjson?id=").$this->input->get('id');
 $data["title"]="View eventimages";
-$this->load->view("template",$data);
+$this->load->view("templatewith2",$data);
 }
 function vieweventimagesjson()
 {
+$id=$this->input->get('id');
 $elements=array();
 $elements[0]=new stdClass();
 $elements[0]->field="`webapp_eventimages`.`id`";
@@ -1657,6 +1800,12 @@ $elements[4]->field="`webapp_eventimages`.`image`";
 $elements[4]->sort="1";
 $elements[4]->header="Image";
 $elements[4]->alias="image";
+    
+$elements[5]=new stdClass();
+$elements[5]->field="`webapp_eventimages`.`event`";
+$elements[5]->sort="1";
+$elements[5]->header="eventid";
+$elements[5]->alias="eventid";
 $search=$this->input->get_post("search");
 $pageno=$this->input->get_post("pageno");
 $orderby=$this->input->get_post("orderby");
@@ -1671,7 +1820,7 @@ if($orderby=="")
 $orderby="id";
 $orderorder="ASC";
 }
-$data["message"]=$this->chintantable->query($pageno,$maxrow,$orderby,$orderorder,$search,$elements,"FROM `webapp_eventimages` LEFT OUTER JOIN `statuses` ON `statuses`.`id`=`webapp_eventimages`.`status` LEFT OUTER JOIN `webapp_events` ON `webapp_events`.`id`=`webapp_eventimages`.`event`");
+$data["message"]=$this->chintantable->query($pageno,$maxrow,$orderby,$orderorder,$search,$elements,"FROM `webapp_eventimages` LEFT OUTER JOIN `statuses` ON `statuses`.`id`=`webapp_eventimages`.`status` LEFT OUTER JOIN `webapp_events` ON `webapp_events`.`id`=`webapp_eventimages`.`event`","WHERE `webapp_eventimages`.`event`='$id'");
 $this->load->view("json",$data);
 }
 
@@ -1680,10 +1829,14 @@ public function createeventimages()
 $access=array("1");
 $this->checkaccess($access);
 $data["page"]="createeventimages";
+$data["page2"]="block/eventblock";
+$data["before1"]=$this->input->get('id');
+$data["before2"]=$this->input->get('id');
+$data["before3"]=$this->input->get('id');
 $data[ 'event' ] =$this->user_model->geteventsdropdown();
 $data[ 'status' ] =$this->user_model->getstatusdropdown();
 $data["title"]="Create eventimages";
-$this->load->view("template",$data);
+$this->load->view("templatewith2",$data);
 }
 public function createeventimagessubmit() 
 {
@@ -1746,8 +1899,8 @@ if($this->eventimages_model->create($event,$status,$order,$image)==0)
 $data["alerterror"]="New eventimages could not be created.";
 else
 $data["alertsuccess"]="eventimages created Successfully.";
-$data["redirect"]="site/vieweventimages";
-$this->load->view("redirect",$data);
+$data["redirect"]="site/vieweventimages?id=".$event;
+$this->load->view("redirect2",$data);
 }
 }
 public function editeventimages()
@@ -1755,11 +1908,15 @@ public function editeventimages()
 $access=array("1");
 $this->checkaccess($access);
 $data["page"]="editeventimages";
+$data["page2"]="block/eventblock";
+$data["before1"]=$this->input->get('eventid');
+$data["before2"]=$this->input->get('eventid');
+$data["before3"]=$this->input->get('eventid');
 $data[ 'status' ] =$this->user_model->getstatusdropdown();
 $data[ 'event' ] =$this->user_model->geteventsdropdown();
 $data["title"]="Edit eventimages";
 $data["before"]=$this->eventimages_model->beforeedit($this->input->get("id"));
-$this->load->view("template",$data);
+$this->load->view("templatewith2",$data);
 }
 public function editeventimagessubmit()
 {
@@ -2189,13 +2346,16 @@ public function editnotification()
 $access=array("1");
 $this->checkaccess($access);
 $data["page"]="editnotification";
+$data["page2"]="block/notificationblock";
+$data["before1"]=$this->input->get('id');
+$data["before2"]=$this->input->get('id');
 $data[ 'videogallery' ] =$this->user_model->getvideogallerydropdown();
 $data[ 'status' ] =$this->user_model->getstatusdropdown();
 $data[ 'event' ] =$this->user_model->geteventsdropdown();
 $data[ 'article' ] =$this->user_model->getarticlesdropdown();
 $data["title"]="Edit notification";
 $data["before"]=$this->notification_model->beforeedit($this->input->get("id"));
-$this->load->view("template",$data);
+$this->load->view("templatewith2",$data);
 }
 public function editnotificationsubmit()
 {
@@ -2300,13 +2460,17 @@ public function viewnotificationuser()
 $access=array("1");
 $this->checkaccess($access);
 $data["page"]="viewnotificationuser";
+$data["page2"]="block/notificationblock";
+$data["before1"]=$this->input->get('id');
+$data["before2"]=$this->input->get('id');
 $data["notification"]=$this->user_model->getnotificationdropdown();
-$data["base_url"]=site_url("site/viewnotificationuserjson");
+$data["base_url"]=site_url("site/viewnotificationuserjson?id=").$this->input->get('id');
 $data["title"]="View notificationuser";
-$this->load->view("template",$data);
+$this->load->view("templatewith2",$data);
 }
 function viewnotificationuserjson()
 {
+    $id=$this->input->get('id');
 $elements=array();
 $elements[0]=new stdClass();
 $elements[0]->field="`webapp_notificationuser`.`id`";
@@ -2314,12 +2478,12 @@ $elements[0]->sort="1";
 $elements[0]->header="ID";
 $elements[0]->alias="id";
 $elements[1]=new stdClass();
-$elements[1]->field="`webapp_notificationuser`.`notification`";
+$elements[1]->field="`webapp_notification`.`content`";
 $elements[1]->sort="1";
 $elements[1]->header="Notification";
 $elements[1]->alias="notification";
 $elements[2]=new stdClass();
-$elements[2]->field="`webapp_notificationuser`.`user`";
+$elements[2]->field="`user`.`name`";
 $elements[2]->sort="1";
 $elements[2]->header="User";
 $elements[2]->alias="user";
@@ -2333,6 +2497,12 @@ $elements[4]->field="`webapp_notificationuser`.`timestamp_receive`";
 $elements[4]->sort="1";
 $elements[4]->header="Timestamp Received";
 $elements[4]->alias="timestamp_receive";
+    
+$elements[5]=new stdClass();
+$elements[5]->field="`webapp_notificationuser`.`notification`";
+$elements[5]->sort="1";
+$elements[5]->header="notificationid";
+$elements[5]->alias="notificationid";
 $search=$this->input->get_post("search");
 $pageno=$this->input->get_post("pageno");
 $orderby=$this->input->get_post("orderby");
@@ -2347,7 +2517,7 @@ if($orderby=="")
 $orderby="id";
 $orderorder="ASC";
 }
-$data["message"]=$this->chintantable->query($pageno,$maxrow,$orderby,$orderorder,$search,$elements,"FROM `webapp_notificationuser`");
+$data["message"]=$this->chintantable->query($pageno,$maxrow,$orderby,$orderorder,$search,$elements,"FROM `webapp_notificationuser` LEFT OUTER JOIN `webapp_notification` ON `webapp_notification`.`id`=`webapp_notificationuser`.`notification` LEFT OUTER JOIN `user` ON `user`.`id`=`webapp_notificationuser`.`user`","WHERE `webapp_notificationuser`.`notification`='$id'");
 $this->load->view("json",$data);
 }
 
@@ -2356,11 +2526,14 @@ public function createnotificationuser()
 $access=array("1");
 $this->checkaccess($access);
 $data["page"]="createnotificationuser";
+$data["page2"]="block/notificationblock";
+$data["before1"]=$this->input->get('id');
+$data["before2"]=$this->input->get('id');
 $data["notification"]=$this->user_model->getnotificationdropdown();
 $data["title"]="Create notificationuser";
 $data[ 'notification' ] =$this->user_model->getnotificationdropdown();
 $data[ 'user' ] =$this->user_model->getuserdropdown();
-$this->load->view("template",$data);
+$this->load->view("templatewith2",$data);
 }
 public function createnotificationusersubmit() 
 {
@@ -2390,8 +2563,8 @@ if($this->notificationuser_model->create($notification,$user,$timestamp,$timesta
 $data["alerterror"]="New notificationuser could not be created.";
 else
 $data["alertsuccess"]="notificationuser created Successfully.";
-$data["redirect"]="site/viewnotificationuser";
-$this->load->view("redirect",$data);
+$data["redirect"]="site/viewnotificationuser?id=".$notification;
+$this->load->view("redirect2",$data);
 }
 }
 public function editnotificationuser()
@@ -2399,12 +2572,15 @@ public function editnotificationuser()
 $access=array("1");
 $this->checkaccess($access);
 $data["page"]="editnotificationuser";
+$data["page2"]="block/notificationblock";
+$data["before1"]=$this->input->get('notificationid');
+$data["before2"]=$this->input->get('notificationid');
 $data["notification"]=$this->user_model->getnotificationdropdown();
 $data[ 'notification' ] =$this->user_model->getnotificationdropdown();
 $data[ 'user' ] =$this->user_model->getuserdropdown();
 $data["title"]="Edit notificationuser";
 $data["before"]=$this->notificationuser_model->beforeedit($this->input->get("id"));
-$this->load->view("template",$data);
+$this->load->view("templatewith2",$data);
 }
 public function editnotificationusersubmit()
 {
@@ -2437,8 +2613,8 @@ if($this->notificationuser_model->edit($id,$notification,$user,$timestamp,$times
 $data["alerterror"]="New notificationuser could not be Updated.";
 else
 $data["alertsuccess"]="notificationuser Updated Successfully.";
-$data["redirect"]="site/viewnotificationuser";
-$this->load->view("redirect",$data);
+$data["redirect"]="site/viewnotificationuser?id=".$notification;
+$this->load->view("redirect2",$data);
 }
 }
 public function deletenotificationuser()
@@ -2446,8 +2622,8 @@ public function deletenotificationuser()
 $access=array("1");
 $this->checkaccess($access);
 $this->notificationuser_model->delete($this->input->get("id"));
-$data["redirect"]="site/viewnotificationuser";
-$this->load->view("redirect",$data);
+$data["redirect"]="site/viewnotificationuser?id=".$this->input->get('notificationid');
+$this->load->view("redirect2",$data);
 }
 public function viewblog()
 {
@@ -2509,6 +2685,24 @@ public function createblog()
 $access=array("1");
 $this->checkaccess($access);
 $data["page"]="createblog";
+    $json=array();
+            $json[0]=new stdClass();
+            $json[0]->placeholder="";
+            $json[0]->value="";
+            $json[0]->label="Meta Title";
+            $json[0]->type="text";
+            $json[0]->options="";
+            $json[0]->classes="";
+    
+            $json[1]=new stdClass();
+            $json[1]->placeholder="";
+            $json[1]->value="";
+            $json[1]->label="Meta Description";
+            $json[1]->type="text";
+            $json[1]->options="";
+            $json[1]->classes="";
+    
+            $data["fieldjson"]=$json;
 $data["title"]="Create blog";
 $this->load->view("template",$data);
 }
@@ -2546,9 +2740,13 @@ public function editblog()
 $access=array("1");
 $this->checkaccess($access);
 $data["page"]="editblog";
+$data["page2"]="block/blogblock";
+$data["before1"]=$this->input->get('id');
+$data["before2"]=$this->input->get('id');
+$data["before3"]=$this->input->get('id');
 $data["title"]="Edit blog";
 $data["before"]=$this->blog_model->beforeedit($this->input->get("id"));
-$this->load->view("template",$data);
+$this->load->view("templatewith2",$data);
 }
 public function editblogsubmit()
 {
@@ -2595,12 +2793,17 @@ public function viewblogvideo()
 $access=array("1");
 $this->checkaccess($access);
 $data["page"]="viewblogvideo";
-$data["base_url"]=site_url("site/viewblogvideojson");
+$data["page2"]="block/blogblock";
+$data["before1"]=$this->input->get('id');
+$data["before2"]=$this->input->get('id');
+$data["before3"]=$this->input->get('id');
+$data["base_url"]=site_url("site/viewblogvideojson?id=").$this->input->get('id');
 $data["title"]="View blogvideo";
-$this->load->view("template",$data);
+$this->load->view("templatewith2",$data);
 }
 function viewblogvideojson()
 {
+    $id=$this->input->get('id');
 $elements=array();
 $elements[0]=new stdClass();
 $elements[0]->field="`webapp_blogvideo`.`id`";
@@ -2627,6 +2830,12 @@ $elements[4]->field="`webapp_blogvideo`.`video`";
 $elements[4]->sort="1";
 $elements[4]->header="Video";
 $elements[4]->alias="video";
+    
+$elements[5]=new stdClass();
+$elements[5]->field="`webapp_blogvideo`.`blog`";
+$elements[5]->sort="1";
+$elements[5]->header="blogid";
+$elements[5]->alias="blogid";
 $search=$this->input->get_post("search");
 $pageno=$this->input->get_post("pageno");
 $orderby=$this->input->get_post("orderby");
@@ -2641,7 +2850,7 @@ if($orderby=="")
 $orderby="id";
 $orderorder="ASC";
 }
-$data["message"]=$this->chintantable->query($pageno,$maxrow,$orderby,$orderorder,$search,$elements,"FROM `webapp_blogvideo` LEFT OUTER JOIN `statuses` ON `statuses`.`id`=`webapp_blogvideo`.`status` LEFT OUTER JOIN `webapp_blog` ON `webapp_blog`.`id`=`webapp_blogvideo`.`blog`");
+$data["message"]=$this->chintantable->query($pageno,$maxrow,$orderby,$orderorder,$search,$elements,"FROM `webapp_blogvideo` LEFT OUTER JOIN `statuses` ON `statuses`.`id`=`webapp_blogvideo`.`status` LEFT OUTER JOIN `webapp_blog` ON `webapp_blog`.`id`=`webapp_blogvideo`.`blog`","WHERE `webapp_blogvideo`.`blog`='$id'");
 $this->load->view("json",$data);
 }
 
@@ -2650,10 +2859,14 @@ public function createblogvideo()
 $access=array("1");
 $this->checkaccess($access);
 $data["page"]="createblogvideo";
+$data["page2"]="block/blogblock";
+$data["before1"]=$this->input->get('id');
+$data["before2"]=$this->input->get('id');
+$data["before3"]=$this->input->get('id');
 $data[ 'blog' ] =$this->user_model->getblogdropdown();
 $data[ 'status' ] =$this->user_model->getstatusdropdown();
 $data["title"]="Create blogvideo";
-$this->load->view("template",$data);
+$this->load->view("templatewith2",$data);
 }
 public function createblogvideosubmit() 
 {
@@ -2682,7 +2895,7 @@ if($this->blogvideo_model->create($blog,$status,$order,$video)==0)
 $data["alerterror"]="New blogvideo could not be created.";
 else
 $data["alertsuccess"]="blogvideo created Successfully.";
-$data["redirect"]="site/viewblogvideo";
+$data["redirect"]="site/viewblogvideo?id=".$blog;
 $this->load->view("redirect",$data);
 }
 }
@@ -2691,11 +2904,15 @@ public function editblogvideo()
 $access=array("1");
 $this->checkaccess($access);
 $data["page"]="editblogvideo";
+$data["page2"]="block/blogblock";
+$data["before1"]=$this->input->get('id');
+$data["before2"]=$this->input->get('id');
+$data["before3"]=$this->input->get('id');
 $data[ 'status' ] =$this->user_model->getstatusdropdown();
 $data[ 'blog' ] =$this->user_model->getblogdropdown();
 $data["title"]="Edit blogvideo";
 $data["before"]=$this->blogvideo_model->beforeedit($this->input->get("id"));
-$this->load->view("template",$data);
+$this->load->view("templatewith2",$data);
 }
 public function editblogvideosubmit()
 {
@@ -2727,8 +2944,8 @@ if($this->blogvideo_model->edit($id,$blog,$status,$order,$video)==0)
 $data["alerterror"]="New blogvideo could not be Updated.";
 else
 $data["alertsuccess"]="blogvideo Updated Successfully.";
-$data["redirect"]="site/viewblogvideo";
-$this->load->view("redirect",$data);
+$data["redirect"]="site/viewblogvideo?id=".$blog;
+$this->load->view("redirect2",$data);
 }
 }
 public function deleteblogvideo()
@@ -2736,20 +2953,25 @@ public function deleteblogvideo()
 $access=array("1");
 $this->checkaccess($access);
 $this->blogvideo_model->delete($this->input->get("id"));
-$data["redirect"]="site/viewblogvideo";
-$this->load->view("redirect",$data);
+$data["redirect"]="site/viewblogvideo?id=".$this->input->get('blogid');
+$this->load->view("redirect2",$data);
 }
 public function viewblogimages()
 {
 $access=array("1");
 $this->checkaccess($access);
 $data["page"]="viewblogimages";
-$data["base_url"]=site_url("site/viewblogimagesjson");
+$data["page2"]="block/blogblock";
+$data["before1"]=$this->input->get('id');
+$data["before2"]=$this->input->get('id');
+$data["before3"]=$this->input->get('id');
+$data["base_url"]=site_url("site/viewblogimagesjson?id=").$this->input->get('id');
 $data["title"]="View blogimages";
-$this->load->view("template",$data);
+$this->load->view("templatewith2",$data);
 }
 function viewblogimagesjson()
 {
+    $id=$this->input->get('id');
 $elements=array();
 $elements[0]=new stdClass();
 $elements[0]->field="`webapp_blogimages`.`id`";
@@ -2776,6 +2998,11 @@ $elements[4]->field="`webapp_blogimages`.`image`";
 $elements[4]->sort="1";
 $elements[4]->header="Image";
 $elements[4]->alias="image";
+$elements[5]=new stdClass();
+$elements[5]->field="`webapp_blogimages`.`blog`";
+$elements[5]->sort="1";
+$elements[5]->header="blogid";
+$elements[5]->alias="blogid";
 $search=$this->input->get_post("search");
 $pageno=$this->input->get_post("pageno");
 $orderby=$this->input->get_post("orderby");
@@ -2790,7 +3017,7 @@ if($orderby=="")
 $orderby="id";
 $orderorder="ASC";
 }
-$data["message"]=$this->chintantable->query($pageno,$maxrow,$orderby,$orderorder,$search,$elements,"FROM `webapp_blogimages` LEFT OUTER JOIN `statuses` ON `statuses`.`id`=`webapp_blogimages`.`status` LEFT OUTER JOIN `webapp_blog` ON `webapp_blog`.`id`=`webapp_blogimages`.`blog`");
+$data["message"]=$this->chintantable->query($pageno,$maxrow,$orderby,$orderorder,$search,$elements,"FROM `webapp_blogimages` LEFT OUTER JOIN `statuses` ON `statuses`.`id`=`webapp_blogimages`.`status` LEFT OUTER JOIN `webapp_blog` ON `webapp_blog`.`id`=`webapp_blogimages`.`blog`","WHERE `webapp_blogimages`.`blog`='$id'");
 $this->load->view("json",$data);
 }
 
@@ -2799,10 +3026,14 @@ public function createblogimages()
 $access=array("1");
 $this->checkaccess($access);
 $data["page"]="createblogimages";
+$data["page2"]="block/blogblock";
+$data["before1"]=$this->input->get('id');
+$data["before2"]=$this->input->get('id');
+$data["before3"]=$this->input->get('id');
 $data[ 'status' ] =$this->user_model->getstatusdropdown();
 $data[ 'blog' ] =$this->user_model->getblogdropdown();
 $data["title"]="Create blogimages";
-$this->load->view("template",$data);
+$this->load->view("templatewith2",$data);
 }
 public function createblogimagessubmit() 
 {
@@ -2865,8 +3096,8 @@ if($this->blogimages_model->create($blog,$status,$order,$image)==0)
 $data["alerterror"]="New blogimages could not be created.";
 else
 $data["alertsuccess"]="blogimages created Successfully.";
-$data["redirect"]="site/viewblogimages";
-$this->load->view("redirect",$data);
+$data["redirect"]="site/viewblogimages?id=".$blog;
+$this->load->view("redirect2",$data);
 }
 }
 public function editblogimages()
@@ -2874,11 +3105,15 @@ public function editblogimages()
 $access=array("1");
 $this->checkaccess($access);
 $data["page"]="editblogimages";
+$data["page2"]="block/blogblock";
+$data["before1"]=$this->input->get('id');
+$data["before2"]=$this->input->get('id');
+$data["before3"]=$this->input->get('id');
 $data[ 'status' ] =$this->user_model->getstatusdropdown();
 $data[ 'blog' ] =$this->user_model->getblogdropdown();
 $data["title"]="Edit blogimages";
 $data["before"]=$this->blogimages_model->beforeedit($this->input->get("id"));
-$this->load->view("template",$data);
+$this->load->view("templatewith2",$data);
 }
 public function editblogimagessubmit()
 {
@@ -2952,8 +3187,8 @@ if($this->blogimages_model->edit($id,$blog,$status,$order,$image)==0)
 $data["alerterror"]="New blogimages could not be Updated.";
 else
 $data["alertsuccess"]="blogimages Updated Successfully.";
-$data["redirect"]="site/viewblogimages";
-$this->load->view("redirect",$data);
+$data["redirect"]="site/viewblogimages?id=".$blog;
+$this->load->view("redirect2",$data);
 }
 }
 public function deleteblogimages()
@@ -2961,8 +3196,8 @@ public function deleteblogimages()
 $access=array("1");
 $this->checkaccess($access);
 $this->blogimages_model->delete($this->input->get("id"));
-$data["redirect"]="site/viewblogimages";
-$this->load->view("redirect",$data);
+$data["redirect"]="site/viewblogimages?id=".$this->input->get('blogid');
+$this->load->view("redirect2",$data);
 }
 
     
@@ -3193,6 +3428,152 @@ $this->slider_model->delete($this->input->get("id"));
 $data["redirect"]="site/viewslider";
 $this->load->view("redirect",$data);
 }
+    
+// CONFIG CRUDE STARTS
+    
+public function viewconfig()
+{
+$access=array("1");
+$this->checkaccess($access);
+$data["page"]="viewconfig";
+$data["base_url"]=site_url("site/viewconfigjson");
+$data["title"]="View config";
+$this->load->view("template",$data);
+}
+function viewconfigjson()
+{
+$elements=array();
+$elements[0]=new stdClass();
+$elements[0]->field="`config`.`id`";
+$elements[0]->sort="1";
+$elements[0]->header="ID";
+$elements[0]->alias="id";
+$elements[2]->field="`config`.`title`";
+$elements[2]->sort="1";
+$elements[2]->header="Title";
+$elements[2]->alias="title";
+$elements[3]=new stdClass();
+$elements[3]->field="`config`.`text`";
+$elements[3]->sort="1";
+$elements[3]->header="text";
+$elements[3]->alias="text";
+$elements[4]=new stdClass();
+$elements[4]->field="`config`.`type`";
+$elements[4]->sort="1";
+$elements[4]->header="type";
+$elements[4]->alias="type";
+    
+$elements[5]=new stdClass();
+$elements[5]->field="`config`.`content`";
+$elements[5]->sort="1";
+$elements[5]->header="Description";
+$elements[5]->alias="content";
+$search=$this->input->get_post("search");
+$pageno=$this->input->get_post("pageno");
+$orderby=$this->input->get_post("orderby");
+$orderorder=$this->input->get_post("orderorder");
+$maxrow=$this->input->get_post("maxrow");
+if($maxrow=="")
+{
+$maxrow=20;
+}
+if($orderby=="")
+{
+$orderby="id";
+$orderorder="ASC";
+}
+$data["message"]=$this->chintantable->query($pageno,$maxrow,$orderby,$orderorder,$search,$elements,"FROM `config`");
+$this->load->view("json",$data);
+}
+
+public function createconfig()
+{
+$access=array("1");
+$this->checkaccess($access);
+$data["page"]="createconfig";
+$data[ 'type' ] =$this->user_model->gettypedropdown();
+$data["title"]="Create config";
+$this->load->view("template",$data);
+}
+public function createconfigsubmit() 
+{
+$access=array("1");
+$this->checkaccess($access);
+$this->form_validation->set_rules("status","Status","trim");
+$this->form_validation->set_rules("title","Title","trim");
+$this->form_validation->set_rules("timestamp","Timestamp","trim");
+$this->form_validation->set_rules("content","Content","trim");
+if($this->form_validation->run()==FALSE)
+{
+$data["alerterror"]=validation_errors();
+$data["page"]="createconfig";
+$data[ 'type' ] =$this->user_model->gettypedropdown();
+$data["title"]="Create config";
+$this->load->view("template",$data);
+}
+else
+{
+$text=$this->input->get_post("text");
+$title=$this->input->get_post("title");
+$type=$this->input->get_post("type");
+$content=$this->input->get_post("content");
+if($this->config_model->create($title,$content,$text,$type)==0)
+$data["alerterror"]="New config could not be created.";
+else
+$data["alertsuccess"]="config created Successfully.";
+$data["redirect"]="site/viewconfig";
+$this->load->view("redirect",$data);
+}
+}
+public function editconfig()
+{
+$access=array("1");
+$this->checkaccess($access);
+$data["page"]="editconfig";
+$data[ 'type' ] =$this->user_model->gettypedropdown();
+$data["title"]="Edit config";
+$data["before"]=$this->config_model->beforeedit($this->input->get("id"));
+$this->load->view("template",$data);
+}
+public function editconfigsubmit()
+{
+$access=array("1");
+$this->checkaccess($access);
+if($this->form_validation->run()==FALSE)
+{
+$data["alerterror"]=validation_errors();
+$data[ 'type' ] =$this->user_model->gettypedropdown();
+$data["page"]="editconfig";
+$data["title"]="Edit config";
+$data["before"]=$this->config_model->beforeedit($this->input->get("id"));
+$this->load->view("template",$data);
+}
+else
+{
+$id=$this->input->get_post("id");
+$text=$this->input->get_post("text");
+$title=$this->input->get_post("title");
+$type=$this->input->get_post("type");
+$content=$this->input->get_post("content");
+if($this->config_model->edit($id,$title,$content,$text,$type)==0)
+$data["alerterror"]="New config could not be Updated.";
+else
+$data["alertsuccess"]="config Updated Successfully.";
+$data["redirect"]="site/viewconfig";
+$this->load->view("redirect",$data);
+}
+}
+public function deleteconfig()
+{
+$access=array("1");
+$this->checkaccess($access);
+$this->config_model->delete($this->input->get("id"));
+$data["redirect"]="site/viewconfig";
+$this->load->view("redirect",$data);
+}
+    
+    
+//CONFIG CRUDE END
 
 }
 ?>

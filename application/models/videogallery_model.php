@@ -34,6 +34,7 @@ return 1;
 public function delete($id)
 {
 $query=$this->db->query("DELETE FROM `webapp_videogallery` WHERE `id`='$id'");
+$query=$this->db->query("DELETE FROM `webapp_videogalleryvideo` WHERE `videogallery`='$id'");
 return $query;
 }
 }

@@ -25,12 +25,14 @@ Create Blog </h3>
 <input type="text" id="normal-field" class="form-control" name="title" value='<?php echo set_value('title');?>'>
 </div>
 </div>
-<div class=" form-group">
-<label class="col-sm-2 control-label" for="normal-field">Json</label>
-<div class="col-sm-8">
-<textarea name="json" id="" cols="20" rows="10" class="form-control tinymce"><?php echo set_value( 'json');?></textarea>
-</div>
-</div>
+<div class="form-group hidden">
+                                <label class="col-sm-2 control-label" for="normal-field">json</label>
+                                <div class="col-sm-4">
+                                    <textarea name="json" id="" cols="20" rows="10" class="form-control fieldjsoninput"><?php echo json_encode($fieldjson,true); ?></textarea>
+
+                                </div>
+                            </div>
+                            <div class="fieldjson"></div>
 <div class=" form-group">
 <label class="col-sm-2 control-label" for="normal-field">Content</label>
 <div class="col-sm-8">
@@ -40,7 +42,7 @@ Create Blog </h3>
 <div class="form-group">
 <label class="col-sm-2 control-label" for="normal-field">&nbsp;</label>
 <div class="col-sm-4">
-<button type="submit" class="btn btn-primary">Save</button>
+<button type="submit" class="btn btn-primary jsonsubmit">Save</button>
 <a href="<?php echo site_url("site/viewblog"); ?>" class="btn btn-secondary">Cancel</a>
 </div>
 </div>
@@ -50,3 +52,14 @@ Create Blog </h3>
 </div>
 </div>
 </div>
+
+     <script type="text/javascript">
+        $(document).ready(function () {
+            //        console.log($(".fieldjsoninput").val());
+            filljsoninput(".fieldjsoninput", ".fieldjson");
+            $(".jsonsubmit").click(function () {
+                jsonsubmit(".fieldjsoninput", ".fieldjson");
+                //return false;
+            });
+        });
+    </script>

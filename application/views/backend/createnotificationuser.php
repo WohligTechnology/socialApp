@@ -29,7 +29,7 @@ Create Notificationuser </h3>
 <label class="col-sm-2 control-label" for="normal-field">&nbsp;</label>
 <div class="col-sm-4">
 <button type="submit" class="btn btn-primary">Save</button>
-<a href="<?php echo site_url("site/viewnotificationuser"); ?>" class="btn btn-secondary">Cancel</a>
+<a href="<?php echo site_url("site/viewnotificationuser?id=").$this->input->get('id'); ?>" class="btn btn-secondary">Cancel</a>
 </div>
 </div>
 </form>

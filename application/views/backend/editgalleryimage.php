@@ -46,7 +46,7 @@
 <label class="col-sm-2 control-label" for="normal-field">&nbsp;</label>
 <div class="col-sm-4">
 <button type="submit" class="btn btn-primary">Save</button>
-<a href='<?php echo site_url("site/viewgalleryimage"); ?>' class='btn btn-secondary'>Cancel</a>
+<a href='<?php echo site_url("site/viewgalleryimage?id=").$this->input->get('galleryid'); ?>' class='btn btn-secondary'>Cancel</a>
 </div>
 </div>
 </form>
