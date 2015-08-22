@@ -206,7 +206,7 @@
                     <a href="<?php echo site_url();?>" class="navbar-brand">
 <!--						<img src="<?php echo base_url('assets/img/camp_logo.png'); ?>" alt="Nifty Logo" class="brand-icon">-->
 						<div class="brand-title">
-							<span class="brand-text">webApp</span>
+							<span class="brand-text"><u><b>webApp</b></u></span>
 						</div>
 					</a>
                 </div>

@@ -19,10 +19,18 @@
 </div>
 </div>
     
+<!--
 <div class=" form-group">
 <label class="col-sm-2 control-label" for="normal-field">Text</label>
 <div class="col-sm-8">
-<textarea name="text"  id="" cols="20" rows="10" class="form-control tinymce"><?php echo set_value( 'text',$before->text);?></textarea>
+<textarea name="text" id="" cols="20" rows="10" class="form-control tinymce"><?php echo set_value( 'text',$before->text);?></textarea>
+</div>
+</div>
+-->
+<div class=" form-group">
+<label class="col-sm-2 control-label" for="normal-field">Image Upload</label>
+<div class="col-sm-4">
+<input type="file" id="normal-field" class="form-control" name="image" value='<?php echo set_value('image');?>'>
 </div>
 </div>
     

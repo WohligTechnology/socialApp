@@ -24,9 +24,9 @@ $this->db->where("id",$id);
 $query=$this->db->get("config")->row();
 return $query;
 }
-public function edit($id,$title,$content,$text,$type)
+public function edit($id,$title,$content,$text,$type,$image)
 {
-$data=array("title" => $title,"content" => $content,"text" => $text,"type" => $type);
+$data=array("title" => $title,"content" => $content,"text" => $text,"type" => $type,"image" => $image);
 $this->db->where( "id", $id );
 $query=$this->db->update( "config", $data );
 return 1;
@@ -36,5 +36,10 @@ public function delete($id)
 $query=$this->db->query("DELETE FROM `config` WHERE `id`='$id'");
 return $query;
 }
+    public function geteditpage($id){
+    $query=$this->db->query("SELECT `type` FROM `config` WHERE `id`='$id'")->row();
+        $type=$query->type;
+        return $type;
+    }
 }
 ?>

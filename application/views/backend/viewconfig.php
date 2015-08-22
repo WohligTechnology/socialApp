@@ -34,10 +34,10 @@
 </div>
 <script>
 function drawtable(resultrow) {
-    if(resultrow.type==0){
+    if(resultrow.type==1){
     resultrow.type="text";
     }
-    else if(resultrow.type==1){
+    else if(resultrow.type==2){
     resultrow.type="File";
     }
 return "<tr><td>" + resultrow.id + "</td><td>" + resultrow.title + "</td><td>" + resultrow.type + "</td><td>" + resultrow.content + "</td><td><a class='btn btn-primary btn-xs' href='<?php echo site_url('site/editconfig?id=');?>"+resultrow.id+"'><i class='icon-pencil'></i></a></td></tr>";

@@ -3529,39 +3529,74 @@ public function editconfig()
 {
 $access=array("1");
 $this->checkaccess($access);
-$data["page"]="editconfig";
-$data[ 'type' ] =$this->user_model->gettypedropdown();
-$data["title"]="Edit config";
-$data["before"]=$this->config_model->beforeedit($this->input->get("id"));
-$this->load->view("template",$data);
+$id=$this->input->get('id');
+$type=$this->config_model->geteditpage($id);
+    if($type==1){
+        $data["page"]="editconfig";
+        $data[ 'type' ] =$this->user_model->gettypedropdown();
+        $data["title"]="Edit config";
+        $data["before"]=$this->config_model->beforeedit($this->input->get("id"));
+        $this->load->view("template",$data);
+    }
+    else if($type==2)
+    {
+        $data["page"]="editconfig1";
+        $data[ 'type' ] =$this->user_model->gettypedropdown();
+        $data["title"]="Edit config";
+        $data["before"]=$this->config_model->beforeedit($this->input->get("id"));
+        $this->load->view("template",$data);
+    }
 }
 public function editconfigsubmit()
 {
 $access=array("1");
 $this->checkaccess($access);
-if($this->form_validation->run()==FALSE)
-{
-$data["alerterror"]=validation_errors();
-$data[ 'type' ] =$this->user_model->gettypedropdown();
-$data["page"]="editconfig";
-$data["title"]="Edit config";
-$data["before"]=$this->config_model->beforeedit($this->input->get("id"));
-$this->load->view("template",$data);
-}
-else
-{
 $id=$this->input->get_post("id");
 $text=$this->input->get_post("text");
 $title=$this->input->get_post("title");
 $type=$this->input->get_post("type");
 $content=$this->input->get_post("content");
-if($this->config_model->edit($id,$title,$content,$text,$type)==0)
+     $config['upload_path'] = './uploads/';
+			$config['allowed_types'] = 'gif|jpg|png|jpeg';
+			$this->load->library('upload', $config);
+			$filename="image";
+			$image="";
+			if (  $this->upload->do_upload($filename))
+			{
+				$uploaddata = $this->upload->data();
+				$image=$uploaddata['file_name'];
+                
+                $config_r['source_image']   = './uploads/' . $uploaddata['file_name'];
+                $config_r['maintain_ratio'] = TRUE;
+                $config_t['create_thumb'] = FALSE;///add this
+                $config_r['width']   = 800;
+                $config_r['height'] = 800;
+                $config_r['quality']    = 100;
+                //end of configs
+
+                $this->load->library('image_lib', $config_r); 
+                $this->image_lib->initialize($config_r);
+                if(!$this->image_lib->resize())
+                {
+                    echo "Failed." . $this->image_lib->display_errors();
+                    //return false;
+                }  
+                else
+                {
+                    //print_r($this->image_lib->dest_image);
+                    //dest_image
+                    $image=$this->image_lib->dest_image;
+                    //return false;
+                }
+                
+			}
+if($this->config_model->edit($id,$title,$content,$text,$type,$image)==0)
 $data["alerterror"]="New config could not be Updated.";
 else
 $data["alertsuccess"]="config Updated Successfully.";
 $data["redirect"]="site/viewconfig";
 $this->load->view("redirect",$data);
-}
+
 }
 public function deleteconfig()
 {
