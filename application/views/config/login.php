@@ -40,14 +40,14 @@
             </div>
             <div class="sublogintype">
                 <div class="form-group">
-                    <label class="col-md-3 control-label" for="demo-text-input">Facebook App Id</label>
+                    <label class="col-md-3 control-label" for="demo-text-input">Twitter App Key</label>
                     <div class="col-md-9">
                         <input type="text" id="demo-text-input" name="appid" class="form-control" placeholder="Text">
                         <small class="help-block">This is a help text</small>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-md-3 control-label" for="demo-text-input">Facebook Secret Id</label>
+                    <label class="col-md-3 control-label" for="demo-text-input">Twitter Secret Id</label>
                     <div class="col-md-9">
                         <input type="text" id="demo-text-input" name="secret" class="form-control" placeholder="Text">
                         <small class="help-block">This is a help text</small>
@@ -63,14 +63,14 @@
             </div>
             <div class="sublogintype">
                 <div class="form-group">
-                    <label class="col-md-3 control-label" for="demo-text-input">Facebook App Id</label>
+                    <label class="col-md-3 control-label" for="demo-text-input">Instagram App Id</label>
                     <div class="col-md-9">
                         <input type="text" id="demo-text-input" name="appid" class="form-control" placeholder="Text">
                         <small class="help-block">This is a help text</small>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-md-3 control-label" for="demo-text-input">Facebook Secret Id</label>
+                    <label class="col-md-3 control-label" for="demo-text-input">Instagram Secret Id</label>
                     <div class="col-md-9">
                         <input type="text" id="demo-text-input" name="secret" class="form-control" placeholder="Text">
                         <small class="help-block">This is a help text</small>

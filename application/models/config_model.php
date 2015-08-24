@@ -24,9 +24,9 @@ $this->db->where("id",$id);
 $query=$this->db->get("config")->row();
 return $query;
 }
-public function edit($id,$title,$content,$text,$type,$image)
+public function edit($id,$title,$content,$text,$image)
 {
-$data=array("title" => $title,"content" => $content,"text" => $text,"type" => $type,"image" => $image);
+$data=array("title" => $title,"content" => $content,"text" => $text,"image" => $image);
 $this->db->where( "id", $id );
 $query=$this->db->update( "config", $data );
 return 1;

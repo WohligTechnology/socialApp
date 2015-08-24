@@ -3936,4 +3936,10 @@ fieldset[disabled] .form-control {
     .dell-campa {
         display: none;
     }
+    .selstyledemo{
+   font-size: 15px;
+    padding: 5px 5px 5px 0;
+    margin-left: 12px;
+    background-color: beige;
+}
 }

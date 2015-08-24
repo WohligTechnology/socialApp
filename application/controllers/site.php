@@ -3530,7 +3530,8 @@ public function editconfig()
     $access=array("1");
     $this->checkaccess($access);
     $id=$this->input->get('id');
-    $type=$this->config_model->geteditpage($id);
+    $type=$id;
+//    $type=$this->config_model->geteditpage($id);
     switch($type)
     {
         case 1: {
@@ -3562,6 +3563,57 @@ public function editconfig()
             $data["page"]="gallery";
             $data["title"]="Gallery";
         }
+            break;  
+        case 7: {
+            $data["page"]="videogallery";
+            $data["title"]="Video Gallery";
+        }
+            break;  
+        case 8: {
+            $data["page"]="events";
+            $data["title"]="Events";
+        }
+            break;   
+        case 9: {
+            $data["page"]="logo";
+            $data["title"]="Logo";
+        }
+            break;   
+        case 10: {
+            $data["page"]="backgroundimage";
+            $data["title"]="Background Image";
+        }
+            break;  
+       
+        case 11: {
+            $data["page"]="banner";
+            $data["title"]="Banner";
+        }
+            break;  
+        case 12: {
+            $data["page"]="editconfigtext";
+            $data["title"]="Title";
+        }
+            break;  
+        case 13: {
+            $data["page"]="editconfigtext";
+            $data["title"]="Description";
+        }
+            break;    
+        case 14: {
+            $data["page"]="editconfigtext";
+            $data["title"]="Color";
+        }
+            break; 
+        case 15: {
+            $data["page"]="editconfigtext";
+            $data["title"]="Meta Keyword";
+        }
+            break;  
+        case 16: {
+            $data["page"]="editconfigtext";
+            $data["title"]="Meta Decription";
+        }
             break;     
     }
     $data[ 'type' ] =$this->user_model->gettypedropdown();
@@ -3570,53 +3622,52 @@ public function editconfig()
 }
 public function editconfigsubmit()
 {
-$access=array("1");
-$this->checkaccess($access);
-$id=$this->input->get_post("id");
-$text=$this->input->get_post("text");
-$title=$this->input->get_post("title");
-$content=$this->input->get_post("content");
-     $config['upload_path'] = './uploads/';
-			$config['allowed_types'] = 'gif|jpg|png|jpeg';
-			$this->load->library('upload', $config);
-			$filename="image";
-			$image="";
-			if (  $this->upload->do_upload($filename))
-			{
-				$uploaddata = $this->upload->data();
-				$image=$uploaddata['file_name'];
-                
-                $config_r['source_image']   = './uploads/' . $uploaddata['file_name'];
-                $config_r['maintain_ratio'] = TRUE;
-                $config_t['create_thumb'] = FALSE;///add this
-                $config_r['width']   = 800;
-                $config_r['height'] = 800;
-                $config_r['quality']    = 100;
-                //end of configs
+    $access=array("1");
+    $this->checkaccess($access);
+    $id=$this->input->get_post("id");
+    $text=$this->input->get_post("text");
+    $title=$this->input->get_post("title");
+    $content=$this->input->get_post("content");
+    $config['upload_path'] = './uploads/';
+    $config['allowed_types'] = 'gif|jpg|png|jpeg';
+    $this->load->library('upload', $config);
+    $filename="image";
+    $image="";
+    if (  $this->upload->do_upload($filename))
+    {
+        $uploaddata = $this->upload->data();
+        $image=$uploaddata['file_name'];
 
-                $this->load->library('image_lib', $config_r); 
-                $this->image_lib->initialize($config_r);
-                if(!$this->image_lib->resize())
-                {
-                    echo "Failed." . $this->image_lib->display_errors();
-                    //return false;
-                }  
-                else
-                {
-                    //print_r($this->image_lib->dest_image);
-                    //dest_image
-                    $image=$this->image_lib->dest_image;
-                    //return false;
-                }
-                
-			}
-if($this->config_model->edit($id,$title,$content,$text,$image)==0)
-$data["alerterror"]="New config could not be Updated.";
-else
-$data["alertsuccess"]="config Updated Successfully.";
-$data["redirect"]="site/viewconfig";
-$this->load->view("redirect",$data);
+        $config_r['source_image']   = './uploads/' . $uploaddata['file_name'];
+        $config_r['maintain_ratio'] = TRUE;
+        $config_t['create_thumb'] = FALSE;///add this
+        $config_r['width']   = 800;
+        $config_r['height'] = 800;
+        $config_r['quality']    = 100;
+        //end of configs
 
+        $this->load->library('image_lib', $config_r); 
+        $this->image_lib->initialize($config_r);
+        if(!$this->image_lib->resize())
+        {
+            echo "Failed." . $this->image_lib->display_errors();
+            //return false;
+        }  
+        else
+        {
+            //print_r($this->image_lib->dest_image);
+            //dest_image
+            $image=$this->image_lib->dest_image;
+            //return false;
+        }
+
+    }
+    if($this->config_model->edit($id,$title,$content,$text,$image)==0)
+    $data["alerterror"]="New config could not be Updated.";
+    else
+    $data["alertsuccess"]="config Updated Successfully.";
+    $data["redirect"]="site/viewconfig";
+    $this->load->view("redirect",$data);
 }
 public function deleteconfig()
 {

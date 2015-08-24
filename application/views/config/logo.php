@@ -23,20 +23,23 @@
 <div class=" form-group">
 <label class="col-sm-2 control-label" for="normal-field">Text</label>
 <div class="col-sm-8">
-<textarea name="text"  id="" cols="20" rows="10" class="form-control tinymce"><?php echo set_value( 'text',$before->text);?></textarea>
+<textarea name="text" id="" cols="20" rows="10" class="form-control tinymce"><?php echo set_value( 'text',$before->text);?></textarea>
 </div>
 </div>
 -->
-    <div class=" form-group">
-        <label class="col-sm-2 control-label" for="normal-field">Want Gallery?</label>
-<select class="selstyle" style="font-size: 15px; padding: 5px 5px 5px 0;margin-left: 12px;background-color: beige;" name="text" >
-  <option value="">Select</option>
-  <option value="1">Yes</option>
-  <option value="2">No</option>
-</select>
-        </div>
-        </div>
+<div class=" form-group">
+<label class="col-sm-2 control-label" for="normal-field">Image Upload</label>
+<div class="col-sm-4">
+<input type="file" id="normal-field" class="form-control" name="image" value='<?php echo set_value('image');?>'>
+</div>
+</div>
     
+<div class=" form-group" style="display:none">
+<label class="col-sm-2 control-label" for="normal-field">Type</label>
+<div class="col-sm-4">
+<?php echo form_dropdown("type",$type,set_value('type',$before->type),"class='chzn-select form-control'");?>
+</div>
+</div>
 <div class="form-group">
 <label class="col-sm-2 control-label" for="normal-field">&nbsp;</label>
 <div class="col-sm-4">
