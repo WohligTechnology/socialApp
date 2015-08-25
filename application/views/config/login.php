@@ -151,7 +151,8 @@
     <div class="panel-footer">
         <div class="submitlogin">
             <button class="btn btn-info btn-labeled fa fa-check fa-lg loginsubmit" type="submit">Save</button>
-            <button class="btn btn-danger btn-labeled fa fa-close fa-lg logincancel" type="submit">Cancel</button>
+             <a href='<?php echo site_url("site/viewconfig"); ?>' class="btn btn-danger btn-labeled fa fa-close fa-lg logincancel" type="submit">Cancel</a>
+<!--            <button class="btn btn-danger btn-labeled fa fa-close fa-lg logincancel" type="submit">Cancel</button>-->
         </div>
     </div>
 </section>
