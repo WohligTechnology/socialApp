@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 25, 2015 at 06:55 AM
+-- Generation Time: Aug 25, 2015 at 12:04 PM
 -- Server version: 5.6.24
 -- PHP Version: 5.5.24
 
@@ -50,8 +50,8 @@ CREATE TABLE IF NOT EXISTS `config` (
   `id` int(11) NOT NULL,
   `title` varchar(255) NOT NULL,
   `content` text NOT NULL,
-  `text` text,
-  `type` int(11) NOT NULL,
+  `text` text NOT NULL,
+  `type` int(11) DEFAULT NULL,
   `image` varchar(255) NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
 
@@ -60,15 +60,15 @@ CREATE TABLE IF NOT EXISTS `config` (
 --
 
 INSERT INTO `config` (`id`, `title`, `content`, `text`, `type`, `image`) VALUES
-(4, 'Login', 'want Login', '0', 2, 'download_(1)4.jpg'),
-(5, 'Blogs', 'want Blog', 'want event plssssssssss1', 1, ''),
-(6, 'Gallery', 'Gallery Content', '1', 0, ''),
-(7, 'Video Gallery', 'want Video Gallery', '2', 2, ''),
-(8, 'Events', 'Event content', '1', 0, ''),
-(9, 'Logo', 'Add logo here', '0', 0, 'download_(1).jpg'),
-(10, 'Background Image', '                        Background Image content', '0', 2, ''),
-(11, 'Banner', 'want banner', '2', 0, ''),
-(12, 'Title', 'want title', 'title text', 1, ''),
+(4, 'Login122', 'want Login122', '[{"name":"email","value":true},{"name":"Google","value":true,"appid":"dfgafd","secret":"fgadfg"},{"name":"Facebook","value":true,"appid":"dgsdgad","secret":"fgadfgda"},{"name":"twitter","value":true,"appid":"DSFDS","secret":"DSFDS"},{"name":"instagram","value":true,"appid":"sdsds","secret":"dsF"}]', 2, ''),
+(5, 'Blogs122ttdgd', 'want Blog1222ttgsd', '[{"name":"no","value":true},{"name":"cms","value":true},{"name":"wordpress","value":true,"appid":"ggss","secret":"fgdf"},{"name":"tumblr","value":true,"appid":"gsdg","secret":"gsd"}]', 1, ''),
+(6, 'Gallery', 'Gallery Content', 'Drop down yes', 3, ''),
+(7, 'Video Gallery', 'want Video Gallery', 'Drop down yes', 3, ''),
+(8, 'Events', 'Event content', 'Drop down no', 3, ''),
+(9, 'Logo', 'Add logo here', 'download_(2)3.jpg', 2, 'download_(2)3.jpg'),
+(10, 'Background Image', 'Background Image content', 'download_(1)2.jpg', 2, 'download_(1)2.jpg'),
+(11, 'Banner', 'want banner', 'Drop down no', 3, ''),
+(12, 'Title', 'want title', 'kmujyhbgvc', 1, ''),
 (13, 'Description', 'description content', 'dessssssssssss', 1, ''),
 (14, 'Colour Of App', 'app color', 'red', 1, ''),
 (15, 'Meta Keyword', 'keywords', 'xdcvgh', 1, ''),
@@ -255,24 +255,25 @@ CREATE TABLE IF NOT EXISTS `user` (
   `facebook` varchar(255) DEFAULT NULL,
   `twitter` varchar(255) DEFAULT NULL,
   `google` varchar(255) DEFAULT NULL,
-  `country` varchar(255) DEFAULT NULL
+  `country` varchar(255) DEFAULT NULL,
+  `instagram` int(11) NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`id`, `name`, `password`, `email`, `accesslevel`, `timestamp`, `status`, `image`, `username`, `socialid`, `logintype`, `json`, `dob`, `street`, `address`, `city`, `state`, `pincode`, `facebook`, `twitter`, `google`, `country`) VALUES
-(1, 'wohlig', 'a63526467438df9566c508027d9cb06b', 'wohlig@wohlig.com', 1, '0000-00-00 00:00:00', 1, 'ArmaanPatraRollsEdit2.jpg', '', '', '1', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(4, 'pratik', '0cb2b62754dfd12b6ed0161d4b447df7', 'pratik@wohlig.com', 1, '2014-05-12 06:52:44', 1, NULL, 'pratik', '1', '1', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(5, 'wohlig123', 'wohlig123', 'wohlig1@wohlig.com', 1, '2014-05-12 06:52:44', 1, NULL, '', '', '0', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(6, 'wohlig1', 'a63526467438df9566c508027d9cb06b', 'wohlig2@wohlig.com', 1, '2014-05-12 06:52:44', 1, NULL, '', '', '0', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(7, 'Avinash', '7b0a80efe0d324e937bbfc7716fb15d3', 'avinash@wohlig.com', 1, '2014-10-17 06:22:29', 1, NULL, '', '', '0', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(9, 'avinash', 'a208e5837519309129fa466b0c68396b', 'a@email.com', 2, '2014-12-03 11:06:19', 3, '', '', '123', '1', 'demojson', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(13, 'aaa', 'a208e5837519309129fa466b0c68396b', 'aaa3@email.com', 3, '2014-12-04 06:55:42', 3, NULL, '', '1', '2', 'userjson', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(18, 'Pooja Thakare', '', 'pooja.wohlig@gmail.com', 3, '2015-08-20 07:40:47', 1, 'https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/photo.jpg', '', '103402210128529539675', 'Google', '', '0000-00-00', '', ',', '', '', '', '', '', '103402210128529539675', ''),
-(19, 'poojathakare55', '', '', 3, '2015-08-20 07:41:04', 1, 'http://abs.twimg.com/sticky/default_profile_images/default_profile_1_normal.png', '', '3104340877', 'Twitter', '', '0000-00-00', '', ',', '', '', '', '', '3104340877', '', ''),
-(20, 'Pooja Thakare', '', '', 3, '2015-08-20 07:41:20', 1, 'https://graph.facebook.com/444037772434450/picture?width=150&height=150', '', '444037772434450', 'Facebook', '', '0000-00-00', '', ',', '', '', '', '444037772434450', '', '', '');
+INSERT INTO `user` (`id`, `name`, `password`, `email`, `accesslevel`, `timestamp`, `status`, `image`, `username`, `socialid`, `logintype`, `json`, `dob`, `street`, `address`, `city`, `state`, `pincode`, `facebook`, `twitter`, `google`, `country`, `instagram`) VALUES
+(1, 'wohlig', 'a63526467438df9566c508027d9cb06b', 'wohlig@wohlig.com', 1, '0000-00-00 00:00:00', 1, 'ArmaanPatraRollsEdit2.jpg', '', '', '1', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0),
+(4, 'pratik', '0cb2b62754dfd12b6ed0161d4b447df7', 'pratik@wohlig.com', 1, '2014-05-12 06:52:44', 1, NULL, 'pratik', '1', '1', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0),
+(5, 'wohlig123', 'wohlig123', 'wohlig1@wohlig.com', 1, '2014-05-12 06:52:44', 1, NULL, '', '', '0', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0),
+(6, 'wohlig1', 'a63526467438df9566c508027d9cb06b', 'wohlig2@wohlig.com', 1, '2014-05-12 06:52:44', 1, NULL, '', '', '0', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0),
+(7, 'Avinash', '7b0a80efe0d324e937bbfc7716fb15d3', 'avinash@wohlig.com', 1, '2014-10-17 06:22:29', 1, NULL, '', '', '0', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0),
+(9, 'avinash', 'a208e5837519309129fa466b0c68396b', 'a@email.com', 2, '2014-12-03 11:06:19', 3, '', '', '123', '1', 'demojson', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0),
+(13, 'aaa', 'a208e5837519309129fa466b0c68396b', 'aaa3@email.com', 3, '2014-12-04 06:55:42', 3, NULL, '', '1', '2', 'userjson', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0),
+(18, 'Pooja Thakare', '', 'pooja.wohlig@gmail.com', 3, '2015-08-20 07:40:47', 1, 'https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/photo.jpg', '', '103402210128529539675', 'Google', '', '0000-00-00', '', ',', '', '', '', '', '', '103402210128529539675', '', 0),
+(19, 'poojathakare55', '', '', 3, '2015-08-20 07:41:04', 1, 'http://abs.twimg.com/sticky/default_profile_images/default_profile_1_normal.png', '', '3104340877', 'Twitter', '', '0000-00-00', '', ',', '', '', '', '', '3104340877', '', '', 0),
+(20, 'Pooja Thakare', '', '', 3, '2015-08-20 07:41:20', 1, 'https://graph.facebook.com/444037772434450/picture?width=150&height=150', '', '444037772434450', 'Facebook', '', '0000-00-00', '', ',', '', '', '', '444037772434450', '', '', '', 0);
 
 -- --------------------------------------------------------
 
