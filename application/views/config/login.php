@@ -10,6 +10,29 @@
             </div>
 
         </div>
+        <div class="logintype googleLogin">
+            <div class="checkbox">
+                <label class="form-checkbox form-normal form-primary active form-text">
+                    <input type="checkbox" checked="" name="Google">Google Login</label>
+            </div>
+            <div class="sublogintype">
+                <div class="form-group">
+                    <label class="col-md-3 control-label" for="demo-text-input">Google App Id</label>
+                    <div class="col-md-9">
+                        <input type="text" id="demo-text-input" name="appid" class="form-control" placeholder="Text">
+                        <small class="help-block">This is a help text</small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 control-label" for="demo-text-input">Google Secret Id</label>
+                    <div class="col-md-9">
+                        <input type="text" id="demo-text-input" name="secret" class="form-control" placeholder="Text">
+                        <small class="help-block">This is a help text</small>
+                    </div>
+                </div>
+            </div>
+
+        </div> 
         <div class="logintype facebookLogin">
             <div class="checkbox">
                 <label class="form-checkbox form-normal form-primary active form-text">
@@ -111,6 +134,7 @@
 <?php echo form_dropdown("type",$type,set_value('type',$before->type),"class='chzn-select form-control'");?>
 </div>
 </div>
+<!--
 <div class="form-group">
 <label class="col-sm-2 control-label" for="normal-field">&nbsp;</label>
 <div class="col-sm-4">
@@ -118,6 +142,7 @@
 <a href='<?php echo site_url("site/viewconfig"); ?>' class='btn btn-secondary'>Cancel</a>
 </div>
 </div>
+-->
 </form>
             
         </div>
