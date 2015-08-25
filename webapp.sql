@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 22, 2015 at 01:48 PM
+-- Generation Time: Aug 25, 2015 at 06:55 AM
 -- Server version: 5.6.24
 -- PHP Version: 5.5.24
 
@@ -52,19 +52,27 @@ CREATE TABLE IF NOT EXISTS `config` (
   `content` text NOT NULL,
   `text` text,
   `type` int(11) NOT NULL,
-  `image` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+  `image` varchar(255) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `config`
 --
 
 INSERT INTO `config` (`id`, `title`, `content`, `text`, `type`, `image`) VALUES
-(4, 'Blog', 'want blog', '0', 2, 'download_(1)4.jpg'),
-(5, 'event1', 'want event1', 'want event plssssssssss1', 1, ''),
-(6, 'Galllery', 'want gallery', 'Its gallelry', 1, ''),
-(7, 'Banner1', 'want banner1', '0', 2, 'download_(1)5.jpg'),
-(8, 'Notification', 'notification content', 'notification tec]xt', 1, '');
+(4, 'Login', 'want Login', '0', 2, 'download_(1)4.jpg'),
+(5, 'Blogs', 'want Blog', 'want event plssssssssss1', 1, ''),
+(6, 'Gallery', 'Gallery Content', '1', 0, ''),
+(7, 'Video Gallery', 'want Video Gallery', '2', 2, ''),
+(8, 'Events', 'Event content', '1', 0, ''),
+(9, 'Logo', 'Add logo here', '0', 0, 'download_(1).jpg'),
+(10, 'Background Image', '                        Background Image content', '0', 2, ''),
+(11, 'Banner', 'want banner', '2', 0, ''),
+(12, 'Title', 'want title', 'title text', 1, ''),
+(13, 'Description', 'description content', 'dessssssssssss', 1, ''),
+(14, 'Colour Of App', 'app color', 'red', 1, ''),
+(15, 'Meta Keyword', 'keywords', 'xdcvgh', 1, ''),
+(16, 'Meta Description', 'meta Description', 'sxdrcvgbh', 1, '');
 
 -- --------------------------------------------------------
 
@@ -104,7 +112,7 @@ CREATE TABLE IF NOT EXISTS `menu` (
   `isactive` int(11) NOT NULL,
   `order` int(11) NOT NULL,
   `icon` varchar(255) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `menu`
@@ -190,7 +198,7 @@ INSERT INTO `slider` (`id`, `image`, `order`, `status`, `alt`) VALUES
 CREATE TABLE IF NOT EXISTS `statuses` (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `statuses`
@@ -561,7 +569,7 @@ CREATE TABLE IF NOT EXISTS `webapp_galleryimage` (
   `status` int(11) NOT NULL,
   `image` varchar(255) NOT NULL,
   `alt` varchar(255) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `webapp_galleryimage`
@@ -614,7 +622,7 @@ CREATE TABLE IF NOT EXISTS `webapp_notificationuser` (
   `user` int(11) NOT NULL,
   `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `timestamp_receive` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `webapp_notificationuser`
@@ -658,7 +666,7 @@ CREATE TABLE IF NOT EXISTS `webapp_videogalleryvideo` (
   `videogallery` int(11) NOT NULL,
   `url` varchar(255) NOT NULL,
   `alt` varchar(255) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `webapp_videogalleryvideo`
@@ -828,7 +836,7 @@ ALTER TABLE `accesslevel`
 -- AUTO_INCREMENT for table `config`
 --
 ALTER TABLE `config`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=19;
 --
 -- AUTO_INCREMENT for table `logintype`
 --
@@ -838,7 +846,7 @@ ALTER TABLE `logintype`
 -- AUTO_INCREMENT for table `menu`
 --
 ALTER TABLE `menu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=23;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=19;
 --
 -- AUTO_INCREMENT for table `slider`
 --
@@ -848,7 +856,7 @@ ALTER TABLE `slider`
 -- AUTO_INCREMENT for table `statuses`
 --
 ALTER TABLE `statuses`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `type`
 --
@@ -918,7 +926,7 @@ ALTER TABLE `webapp_gallery`
 -- AUTO_INCREMENT for table `webapp_galleryimage`
 --
 ALTER TABLE `webapp_galleryimage`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `webapp_notification`
 --
@@ -928,7 +936,7 @@ ALTER TABLE `webapp_notification`
 -- AUTO_INCREMENT for table `webapp_notificationuser`
 --
 ALTER TABLE `webapp_notificationuser`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `webapp_videogallery`
 --
@@ -938,7 +946,7 @@ ALTER TABLE `webapp_videogallery`
 -- AUTO_INCREMENT for table `webapp_videogalleryvideo`
 --
 ALTER TABLE `webapp_videogalleryvideo`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
