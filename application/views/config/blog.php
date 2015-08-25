@@ -3,11 +3,12 @@
         <h3 class="panel-title">Blog Config </h3>
     </header>
     <div class="panel-body">
-        <div class="logintype normalLogin">
+        <div class="logintype no">
             <div class="checkbox">
                 <label class="form-checkbox form-normal form-primary active form-text">
                     <input type="checkbox" checked=""  name="no">No</label>
-            </div> 
+            </div>   </div> 
+        <div class="logintype cms">
             <div class="checkbox">
                 <label class="form-checkbox form-normal form-primary active form-text">
                     <input type="checkbox" checked=""  name="cms">CMS</label>
@@ -19,7 +20,7 @@
                 <label class="form-checkbox form-normal form-primary active form-text">
                     <input type="checkbox" checked="" name="wordpress">Wordpress</label>
             </div>
-            <div class="sublogintype">
+            <div class="sublogintype" style=" min-height: 110px;">
                 <div class="form-group">
                     <label class="col-md-3 control-label" for="demo-text-input">Wordpress App Id</label>
                     <div class="col-md-9">
@@ -42,7 +43,7 @@
                 <label class="form-checkbox form-normal form-primary active form-text">
                     <input type="checkbox" checked="" name="tumblr">Tumblr</label>
             </div>
-            <div class="sublogintype">
+            <div class="sublogintype" style=" min-height: 110px;">
                 <div class="form-group">
                     <label class="col-md-3 control-label" for="demo-text-input">Tumblr App Id</label>
                     <div class="col-md-9">

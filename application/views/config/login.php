@@ -15,7 +15,7 @@
                 <label class="form-checkbox form-normal form-primary active form-text">
                     <input type="checkbox" checked="" name="Google">Google Login</label>
             </div>
-            <div class="sublogintype">
+            <div class="sublogintype" style=" min-height: 110px;">
                 <div class="form-group">
                     <label class="col-md-3 control-label" for="demo-text-input">Google App Id</label>
                     <div class="col-md-9">
@@ -38,7 +38,7 @@
                 <label class="form-checkbox form-normal form-primary active form-text">
                     <input type="checkbox" checked="" name="Facebook">Facebook Login</label>
             </div>
-            <div class="sublogintype">
+            <div class="sublogintype" style=" min-height: 110px;">
                 <div class="form-group">
                     <label class="col-md-3 control-label" for="demo-text-input">Facebook App Id</label>
                     <div class="col-md-9">
@@ -61,7 +61,7 @@
                 <label class="form-checkbox form-normal form-primary active form-text">
                     <input type="checkbox" checked="" name="twitter">Twitter Login</label>
             </div>
-            <div class="sublogintype">
+            <div class="sublogintype" style=" min-height: 110px;">
                 <div class="form-group">
                     <label class="col-md-3 control-label" for="demo-text-input">Twitter App Key</label>
                     <div class="col-md-9">
@@ -84,7 +84,7 @@
                 <label class="form-checkbox form-normal form-primary active form-text">
                     <input type="checkbox" checked="" name="instagram">Instagram Login</label>
             </div>
-            <div class="sublogintype">
+            <div class="sublogintype" style=" min-height: 110px;">
                 <div class="form-group">
                     <label class="col-md-3 control-label" for="demo-text-input">Instagram App Id</label>
                     <div class="col-md-9">
@@ -155,6 +155,7 @@
         </div>
     </div>
 </section>
+
 
 <script>
     var $logint = {};
