@@ -5,6 +5,7 @@
 	echo anchor('hauth/login/Twitter','Login With Twitter.').'<br />';
 	
 	echo anchor('hauth/login/Facebook','Login With Facebook.').'<br />';
+	echo anchor('hauth/login/Instagram','Login With Instagram.').'<br />';
 	
 	echo anchor('hauth/login/LinkedIn','Login With LinkedIn.').'<br />';
 ?>
