@@ -61,7 +61,6 @@
 
         </div>
        
-<!--
         <div class="hidden123">
             
             <form  class='form-horizontal tasi-form loginform' method='post' action='<?php echo site_url("site/editconfigsubmit");?>' enctype= 'multipart/form-data'>
@@ -103,7 +102,6 @@
 </form>
             
         </div>
--->
 
     </div>
     <div class="panel-footer">
