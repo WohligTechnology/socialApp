@@ -15,7 +15,8 @@
 <th data-field="id">ID</th>
 <th data-field="title">Title</th>
 <th data-field="type">Type</th>
-<th data-field="content">Description</th>
+<th data-field="text">Text</th>
+<!--<th data-field="content">Description</th>-->
 <th data-field="action">Action</th>
 </tr>
 </thead>
@@ -39,8 +40,11 @@ function drawtable(resultrow) {
     }
     else if(resultrow.type==2){
     resultrow.type="File";
+    } 
+    else if(resultrow.type==3){
+    resultrow.type="Drop Down";
     }
-return "<tr><td>" + resultrow.id + "</td><td>" + resultrow.title + "</td><td>" + resultrow.type + "</td><td>" + resultrow.content + "</td><td><a class='btn btn-primary btn-xs' href='<?php echo site_url('site/editconfig?id=');?>"+resultrow.id+"'><i class='icon-pencil'></i></a></td></tr>";
+return "<tr><td>" + resultrow.id + "</td><td>" + resultrow.title + "</td><td>" + resultrow.type + "</td><td>" + resultrow.text + "</td><td><a class='btn btn-primary btn-xs' href='<?php echo site_url('site/editconfig?id=');?>"+resultrow.id+"'><i class='icon-pencil'></i></a></td></tr>";
 }
 generatejquery("<?php echo $base_url;?>");
 </script>

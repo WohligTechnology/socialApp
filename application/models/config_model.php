@@ -26,6 +26,9 @@ return $query;
 }
 public function edit($id,$title,$content,$text,$image)
 {
+    if($image){
+    $text=$image;
+    }
 $data=array("title" => $title,"content" => $content,"text" => $text,"image" => $image);
 $this->db->where( "id", $id );
 $query=$this->db->update( "config", $data );

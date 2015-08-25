@@ -29,10 +29,10 @@
 -->
     <div class=" form-group">
         <label class="col-sm-2 control-label" for="normal-field">Want Events?</label>
-<select class="selstyle" name="text" >
+<select class="selstyle" style="font-size: 15px; padding: 5px 5px 5px 0;margin-left: 12px;background-color: beige;" name="text" >
   <option value="">Select</option>
-  <option value="1">Yes</option>
-  <option value="2">No</option>
+  <option value="Drop down yes">Yes</option>
+  <option value="Drop down no">No</option>
 </select>
         </div>
         </div>

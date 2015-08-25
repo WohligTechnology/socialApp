@@ -313,7 +313,8 @@ class User_model extends CI_Model
 		$return=array(
 		"" => "Select",
 		"1" => "Text",
-		"2" => "File"
+		"2" => "File",
+		"3" => "Drop down"
 		);
 		return $return;
 	}
@@ -570,7 +571,7 @@ class User_model extends CI_Model
 //        }
 	}
 	
-    function sociallogin($user_profile,$provider)
+     function sociallogin($user_profile,$provider)
     {
         $query=$this->db->query("SELECT * FROM `user` WHERE `user`.`socialid`='$user_profile->identifier'");
         if($query->num_rows == 0)
@@ -593,9 +594,13 @@ class User_model extends CI_Model
 						$twitterid=$user_profile->identifier;
                         $providerid="Twitter";
 						break;
+						case "Instagram":
+						$instagramid=$user_profile->identifier;
+                        $providerid="Instagram";
+						break;
 					}
 
-            $query2=$this->db->query("INSERT INTO `user` (`id`, `name`, `password`, `email`, `accesslevel`, `timestamp`, `status`, `image`, `username`, `socialid`, `logintype`, `json`, `dob`, `street`, `address`, `city`, `state`, `country`, `pincode`, `facebook`, `google`, `twitter`) VALUES (NULL, '$user_profile->displayName', '', '$user_profile->email', '3', CURRENT_TIMESTAMP, '1', '$user_profile->photoURL', '', '$user_profile->identifier', '$providerid', '', '$user_profile->birthYear-$user_profile->birthMonth-$user_profile->birthDay', '', '$user_profile->address,$user_profile->region', '$user_profile->city', '', '$user_profile->country', '', '$facebookid', '$googleid', '$twitterid')");
+            $query2=$this->db->query("INSERT INTO `user` (`id`, `name`, `password`, `email`, `accesslevel`, `timestamp`, `status`, `image`, `username`, `socialid`, `logintype`, `json`, `dob`, `street`, `address`, `city`, `state`, `country`, `pincode`, `facebook`, `google`, `twitter`,`instagram`) VALUES (NULL, '$user_profile->displayName', '', '$user_profile->email', '3', CURRENT_TIMESTAMP, '1', '$user_profile->photoURL', '', '$user_profile->identifier', '$providerid', '', '$user_profile->birthYear-$user_profile->birthMonth-$user_profile->birthDay', '', '$user_profile->address,$user_profile->region', '$user_profile->city', '', '$user_profile->country', '', '$facebookid', '$googleid', '$twitterid','$instagramid')");
             $id=$this->db->insert_id();
             $newdata = array(
                 'email'     => $user_profile->email,
