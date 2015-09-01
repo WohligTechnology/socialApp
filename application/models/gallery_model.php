@@ -20,13 +20,16 @@ $query=$this->db->get("webapp_gallery")->row();
 return $query;
 }
 function getsinglegallery($id){
-$this->db->where("id",$id);
-$query=$this->db->get("webapp_gallery")->row();
+//$query=$this->db->query("SELECT `webapp_gallery`.`id`, `webapp_gallery`.`order`, `webapp_gallery`.`status`,`webapp_gallery`.`name`, `webapp_gallery`.`json`,`webapp_galleryimage`.`id`, `webapp_galleryimage`.`gallery`, `webapp_galleryimage`.`order`, `webapp_galleryimage`.`status`, `webapp_galleryimage`.`image`, `webapp_galleryimage`.`alt` FROM `webapp_gallery` LEFT OUTER JOIN `webapp_galleryimage` ON `webapp_galleryimage`.`gallery`=`webapp_gallery`.`id` WHERE `webapp_gallery`.`id`='$id'")->result();
+    $query=$this->db->query("SELECT `id`, `order`, `status`, `name`, `json` FROM `webapp_gallery` WHERE `status`=1 AND `id`='$id'")->row();
+     
+    $query->images=$this->db->query("SELECT `id`, `gallery`, `order`, `status`, `image`, `alt` FROM `webapp_galleryimage` WHERE `gallery`='$id' AND `status`=1")->result();
+//    array_push($row->images);
 return $query;
 }
-public function edit($id,$order,$status,$name,$json)
+public function edit($id,$order,$status,$name,$json,$timestamp)
 {
-$data=array("order" => $order,"status" => $status,"name" => $name,"json" => $json);
+$data=array("order" => $order,"status" => $status,"name" => $name,"json" => $json,"timestamp" => $timestamp);
 $this->db->where( "id", $id );
 $query=$this->db->update( "webapp_gallery", $data );
 return 1;

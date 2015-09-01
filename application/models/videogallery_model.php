@@ -20,13 +20,13 @@ $query=$this->db->get("webapp_videogallery")->row();
 return $query;
 }
 function getsinglevideogallery($id){
-$this->db->where("id",$id);
-$query=$this->db->get("webapp_videogallery")->row();
+$query=$this->db->query("SELECT `id`, `order`, `status`, `name`, `json` FROM `webapp_videogallery` WHERE `status`=1 AND `id`='$id'")->row();
+    $query->videos=$this->db->query("SELECT `id`, `order`, `status`, `name`, `json` FROM `webapp_videogallery` WHERE `status`=1 AND `id`='$id'")->result();
 return $query;
 }
-public function edit($id,$order,$status,$name,$json)
+public function edit($id,$order,$status,$name,$json,$timestamp)
 {
-$data=array("order" => $order,"status" => $status,"name" => $name,"json" => $json);
+$data=array("order" => $order,"status" => $status,"name" => $name,"json" => $json,"timestamp" => $timestamp);
 $this->db->where( "id", $id );
 $query=$this->db->update( "webapp_videogallery", $data );
 return 1;

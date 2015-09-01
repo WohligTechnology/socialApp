@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>webApp |
+    <title>Blazen |
         <?php echo $title; ?>
     </title>
     <!--    <link rel="icon" href="<?php echo base_url('assets/img/camp_logo.png'); ?>" type="image/x-icon" />-->
@@ -206,7 +206,7 @@
                     <a href="<?php echo site_url();?>" class="navbar-brand">
 <!--						<img src="<?php echo base_url('assets/img/camp_logo.png'); ?>" alt="Nifty Logo" class="brand-icon">-->
 						<div class="brand-title">
-							<span class="brand-text"><u><b>webApp</b></u></span>
+							<span class="brand-text"><u><b>Blazen</b></u></span>
 						</div>
 					</a>
                 </div>

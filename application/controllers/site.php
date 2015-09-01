@@ -378,6 +378,11 @@ $elements[4]->field="`webapp_articles`.`content`";
 $elements[4]->sort="1";
 $elements[4]->header="Content";
 $elements[4]->alias="content";
+$elements[5]=new stdClass();
+$elements[5]->field="`webapp_articles`.`timestamp`";
+$elements[5]->sort="1";
+$elements[5]->header="Timestamp";
+$elements[5]->alias="timestamp";
 $search=$this->input->get_post("search");
 $pageno=$this->input->get_post("pageno");
 $orderby=$this->input->get_post("orderby");
@@ -491,7 +496,8 @@ $status=$this->input->get_post("status");
 $title=$this->input->get_post("title");
 $json=$this->input->get_post("json");
 $content=$this->input->get_post("content");
-if($this->articles_model->edit($id,$status,$title,$json,$content)==0)
+$timestamp=$this->input->get_post("timestamp");
+if($this->articles_model->edit($id,$status,$title,$json,$content,$timestamp)==0)
 $data["alerterror"]="New articles could not be Updated.";
 else
 $data["alertsuccess"]="articles Updated Successfully.";
@@ -722,6 +728,11 @@ $elements[4]->field="`webapp_gallery`.`json`";
 $elements[4]->sort="1";
 $elements[4]->header="Json";
 $elements[4]->alias="json";
+$elements[5]=new stdClass();
+$elements[5]->field="`webapp_gallery`.`timestamp`";
+$elements[5]->sort="1";
+$elements[5]->header="Timestamp";
+$elements[5]->alias="timestamp";
 $search=$this->input->get_post("search");
 $pageno=$this->input->get_post("pageno");
 $orderby=$this->input->get_post("orderby");
@@ -835,7 +846,8 @@ $order=$this->input->get_post("order");
 $status=$this->input->get_post("status");
 $name=$this->input->get_post("name");
 $json=$this->input->get_post("json");
-if($this->gallery_model->edit($id,$order,$status,$name,$json)==0)
+$timestamp=$this->input->get_post("timestamp");
+if($this->gallery_model->edit($id,$order,$status,$name,$json,$timestamp)==0)
 $data["alerterror"]="New gallery could not be Updated.";
 else
 $data["alertsuccess"]="gallery Updated Successfully.";
@@ -1136,6 +1148,12 @@ $elements[4]->field="`webapp_videogallery`.`json`";
 $elements[4]->sort="1";
 $elements[4]->header="Json";
 $elements[4]->alias="json";
+    
+$elements[5]=new stdClass();
+$elements[5]->field="`webapp_videogallery`.`timestamp`";
+$elements[5]->sort="1";
+$elements[5]->header="Timestamp";
+$elements[5]->alias="timestamp";
 $search=$this->input->get_post("search");
 $pageno=$this->input->get_post("pageno");
 $orderby=$this->input->get_post("orderby");
@@ -1253,7 +1271,8 @@ $order=$this->input->get_post("order");
 $status=$this->input->get_post("status");
 $name=$this->input->get_post("name");
 $json=$this->input->get_post("json");
-if($this->videogallery_model->edit($id,$order,$status,$name,$json)==0)
+    $timestamp=$this->input->get_post("timestamp");
+if($this->videogallery_model->edit($id,$order,$status,$name,$json,$timestamp)==0)
 $data["alerterror"]="New videogallery could not be Updated.";
 else
 $data["alertsuccess"]="videogallery Updated Successfully.";
@@ -2662,6 +2681,12 @@ $elements[4]->field="`webapp_blog`.`content`";
 $elements[4]->sort="1";
 $elements[4]->header="Content";
 $elements[4]->alias="content";
+    
+$elements[5]=new stdClass();
+$elements[5]->field="`webapp_blog`.`timestamp`";
+$elements[5]->sort="1";
+$elements[5]->header="Timestamp";
+$elements[5]->alias="timestamp";
 $search=$this->input->get_post("search");
 $pageno=$this->input->get_post("pageno");
 $orderby=$this->input->get_post("orderby");
@@ -2772,7 +2797,8 @@ $name=$this->input->get_post("name");
 $title=$this->input->get_post("title");
 $json=$this->input->get_post("json");
 $content=$this->input->get_post("content");
-if($this->blog_model->edit($id,$name,$title,$json,$content)==0)
+      $timestamp=$this->input->get_post("timestamp");
+if($this->blog_model->edit($id,$name,$title,$json,$content,$timestamp)==0)
 $data["alerterror"]="New blog could not be Updated.";
 else
 $data["alertsuccess"]="blog Updated Successfully.";

@@ -20,8 +20,11 @@ $query=$this->db->get("webapp_events")->row();
 return $query;
 }
 function getsingleevents($id){
-$this->db->where("id",$id);
-$query=$this->db->get("webapp_events")->row();
+$query=$this->db->query("SELECT `id`, `status`, `title`, `timestamp`, `content` FROM `webapp_events` WHERE `status`=1 AND `id`='$id'")->row();
+$query->eventimages=$this->db->query("SELECT `id`, `event`, `status`, `order`, `image` FROM `webapp_eventimages` WHERE `event`='$id' 
+AND `status`=1")->result();
+$query->eventvideos=$this->db->query("SELECT `id`, `event`, `videogallery`, `status`, `order` FROM `webapp_eventvideo` WHERE `status`=1 AND `event`='$id'")->result();
+    
 return $query;
 }
 public function edit($id,$status,$title,$timestamp,$content)

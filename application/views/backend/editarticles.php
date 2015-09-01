@@ -27,8 +27,13 @@
             <div class=" form-group">
                 <label class="col-sm-2 control-label" for="normal-field">Content</label>
                 <div class="col-sm-8">
-                    <textarea name="content" id="" cols="20" rows="10" class="form-control tinymce">
-                        <?php echo set_value( 'content',$before->content);?></textarea>
+                    <textarea name="content" id="" cols="20" rows="10" class="form-control tinymce"><?php echo set_value( 'content',$before->content);?></textarea>
+                </div>
+            </div>
+             <div class="form-group">
+                <label class="col-sm-2 control-label" for="normal-field">Timestamp</label>
+                <div class="col-sm-4">
+                    <input type="text" id="normal-field" class="form-control" name="timestamp" value='<?php echo set_value(' timestamp ',$before->timestamp);?>'>
                 </div>
             </div>
             <div class="form-group">

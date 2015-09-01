@@ -5,7 +5,7 @@ class articles_model extends CI_Model
 {
 public function create($status,$title,$json,$content)
 {
-$data=array("status" => $status,"title" => $title,"json" => $json,"content" => $content);
+$data=array("status" => $status,"title" => $title,"json" => $json,"content" => $content,"timestamp" => $timestamp);
 $query=$this->db->insert( "webapp_articles", $data );
 $id=$this->db->insert_id();
 if(!$query)
@@ -20,13 +20,12 @@ $query=$this->db->get("webapp_articles")->row();
 return $query;
 }
 function getsinglearticles($id){
-$this->db->where("id",$id);
-$query=$this->db->get("webapp_articles")->row();
+$query=$this->db->query("SELECT `id`, `status`, `title`, `json`, `content` FROM `webapp_articles` WHERE `status`=1 AND `id`='$id'")->row();
 return $query;
 }
-public function edit($id,$status,$title,$json,$content)
+public function edit($id,$status,$title,$json,$content,$timestamp)
 {
-$data=array("status" => $status,"title" => $title,"json" => $json,"content" => $content);
+$data=array("status" => $status,"title" => $title,"json" => $json,"content" => $content,"timestamp" => $timestamp);
 $this->db->where( "id", $id );
 $query=$this->db->update( "webapp_articles", $data );
 return 1;
