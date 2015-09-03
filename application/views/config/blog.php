@@ -6,19 +6,19 @@
         <div class="logintype no">
             <div class="checkbox">
                 <label class="form-checkbox form-normal form-primary active form-text">
-                    <input type="checkbox" checked=""  name="no">No</label>
+                    <input type="checkbox"  class="class1"  name="no">No</label>
             </div>   </div> 
         <div class="logintype cms">
             <div class="checkbox">
                 <label class="form-checkbox form-normal form-primary active form-text">
-                    <input type="checkbox" checked=""  name="cms">CMS</label>
+                    <input type="checkbox"  class="class1"  name="cms">CMS</label>
             </div>
 
         </div>
         <div class="logintype facebookLogin">
             <div class="checkbox">
                 <label class="form-checkbox form-normal form-primary active form-text">
-                    <input type="checkbox" checked="" name="wordpress">Wordpress</label>
+                    <input type="checkbox"  class="class1" name="wordpress">Wordpress</label>
             </div>
             <div class="sublogintype" style=" min-height: 110px;">
                 <div class="form-group">
@@ -41,7 +41,7 @@
         <div class="logintype twitterLogin">
             <div class="checkbox">
                 <label class="form-checkbox form-normal form-primary active form-text">
-                    <input type="checkbox" checked="" name="tumblr">Tumblr</label>
+                    <input type="checkbox"  class="class1" name="tumblr">Tumblr</label>
             </div>
             <div class="sublogintype" style=" min-height: 110px;">
                 <div class="form-group">
@@ -117,6 +117,21 @@
 </section>
 
 <script>
+    
+    $('.class1').click(function() {
+    var $this = $(this);
+        console.log($this);
+    if ($this.is(".class1")) {
+        if ($this.is(":checked")) {
+            $(".class1").not($this).prop({ disabled: true, checked: false });
+        } else {
+            $(".class1").prop("disabled", false);
+        }
+    }
+});
+    
+    
+    
     var $logint = {};
     $(document).ready(function () {
         $(".logintype input[type=checkbox]").click(function () {
