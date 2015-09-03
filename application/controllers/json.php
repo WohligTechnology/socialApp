@@ -381,6 +381,24 @@ $elements[4]->sort="1";
 $elements[4]->header="Content";
 $elements[4]->alias="content";
     
+$elements[5]=new stdClass();
+$elements[5]->field="`webapp_events`.`image`";
+$elements[5]->sort="1";
+$elements[5]->header="Content";
+$elements[5]->alias="content";
+    
+$elements[6]=new stdClass();
+$elements[6]->field="`webapp_events`.`startdate`";
+$elements[6]->sort="1";
+$elements[6]->header="startdate";
+$elements[6]->alias="startdate";
+    
+$elements[7]=new stdClass();
+$elements[7]->field="`webapp_events`.`starttime`";
+$elements[7]->sort="1";
+$elements[7]->header="starttime";
+$elements[7]->alias="starttime";
+    
 
 $search=$this->input->get_post("search");
 $pageno=$this->input->get_post("pageno");
