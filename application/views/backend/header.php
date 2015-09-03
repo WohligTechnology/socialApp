@@ -10,10 +10,8 @@
     <link rel="icon" href="<?php echo base_url('assets/favicon.ico'); ?>" type="image/x-icon" />
     <link href="<?php echo base_url('assets/css/bootstrap.min.css'); ?>" rel="stylesheet">
     <link href="<?php echo base_url('assets/css/nifty.min.css'); ?>" rel="stylesheet">
-    <link href="<?php echo base_url('assets/css/bootstrap-table.min.css'); ?>" rel="stylesheet">
 
     <link href="<?php echo base_url('assets/plugins/font-awesome/css/font-awesome.min.css'); ?>" rel="stylesheet">
-    <link href="<?php echo base_url('assets/plugins/bootstrap-select/bootstrap-select.min.css'); ?>" rel="stylesheet">
     <link href="<?php echo base_url('assets/plugins/pace/pace.min.css'); ?>" rel="stylesheet">
     <script src="<?php echo base_url('assets/js/jquery-2.1.1.min.js'); ?>" type="text/javascript"></script>
     
