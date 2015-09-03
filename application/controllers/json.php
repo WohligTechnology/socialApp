@@ -1056,4 +1056,8 @@ $orderorder="ASC";
 $data["message"]=$this->chintantable->query($pageno,$maxrow,$orderby,$orderorder,$search,$elements,"FROM `slider`","WHERE `slider`.`status`=1 ");
 $this->load->view("json",$data);
 }
+ public function getappconfig(){
+$data["message"]=$this->restapi_model->getappconfig();
+ $this->load->view("json",$data);
+ }
 } ?>

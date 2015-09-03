@@ -3,9 +3,9 @@ if ( !defined( "BASEPATH" ) )
 exit( "No direct script access allowed" );
 class gallery_model extends CI_Model
 {
-public function create($order,$status,$name,$json)
+public function create($order,$status,$name,$json,$image)
 {
-$data=array("order" => $order,"status" => $status,"name" => $name,"json" => $json);
+$data=array("order" => $order,"status" => $status,"name" => $name,"json" => $json,"image" => $image);
 $query=$this->db->insert( "webapp_gallery", $data );
 $id=$this->db->insert_id();
 if(!$query)
@@ -27,9 +27,9 @@ function getsinglegallery($id){
 //    array_push($row->images);
 return $query;
 }
-public function edit($id,$order,$status,$name,$json,$timestamp)
+public function edit($id,$order,$status,$name,$json,$timestamp,$image)
 {
-$data=array("order" => $order,"status" => $status,"name" => $name,"json" => $json,"timestamp" => $timestamp);
+$data=array("order" => $order,"status" => $status,"name" => $name,"json" => $json,"timestamp" => $timestamp,"image" => $image);
 $this->db->where( "id", $id );
 $query=$this->db->update( "webapp_gallery", $data );
 return 1;

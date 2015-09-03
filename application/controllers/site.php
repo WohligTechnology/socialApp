@@ -800,7 +800,17 @@ $order=$this->input->get_post("order");
 $status=$this->input->get_post("status");
 $name=$this->input->get_post("name");
 $json=$this->input->get_post("json");
-if($this->gallery_model->create($order,$status,$name,$json)==0)
+      $config['upload_path'] = './uploads/';
+						$config['allowed_types'] = 'gif|jpg|png|jpeg';
+						$this->load->library('upload', $config);
+						$filename="image";
+						$image="";
+						if (  $this->upload->do_upload($filename))
+						{
+							$uploaddata = $this->upload->data();
+							$image=$uploaddata['file_name'];
+						}
+if($this->gallery_model->create($order,$status,$name,$json,$image)==0)
 $data["alerterror"]="New gallery could not be created.";
 else
 $data["alertsuccess"]="gallery created Successfully.";
@@ -847,7 +857,24 @@ $status=$this->input->get_post("status");
 $name=$this->input->get_post("name");
 $json=$this->input->get_post("json");
 $timestamp=$this->input->get_post("timestamp");
-if($this->gallery_model->edit($id,$order,$status,$name,$json,$timestamp)==0)
+      $config['upload_path'] = './uploads/';
+						$config['allowed_types'] = 'gif|jpg|png|jpeg';
+						$this->load->library('upload', $config);
+						$filename="image";
+						$image="";
+						if (  $this->upload->do_upload($filename))
+						{
+							$uploaddata = $this->upload->data();
+							$image=$uploaddata['file_name'];
+						}
+
+						if($image=="")
+						{
+						$image=$this->bannerslides_model->getimagebyid($id);
+						   // print_r($image);
+							$image=$image->image;
+						}
+if($this->gallery_model->edit($id,$order,$status,$name,$json,$timestamp,$image)==0)
 $data["alerterror"]="New gallery could not be Updated.";
 else
 $data["alertsuccess"]="gallery Updated Successfully.";

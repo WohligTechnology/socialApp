@@ -48,5 +48,10 @@ return  1;
         else
         return false;
     }
+    
+    public function getappconfig(){
+    $query=$this->db->query("SELECT `id`, `title`, `content`, `text`, `type`, `image` FROM `config`")->result();
+       return $query;
+    }
 }
 ?>
