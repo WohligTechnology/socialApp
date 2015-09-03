@@ -988,4 +988,54 @@ $this->load->view("json",$data);
 //$data["message"]=$this->blogimages_model->getsingleblogimages($id);
 //$this->load->view("json",$data);
 //}
+ 
+ function getallsliders()
+{
+$elements=array();
+$elements[0]=new stdClass();
+$elements[0]->field="`slider`.`id`";
+$elements[0]->sort="1";
+$elements[0]->header="ID";
+$elements[0]->alias="id";
+
+$elements[1]=new stdClass();
+$elements[1]->field="`slider`.`image`";
+$elements[1]->sort="1";
+$elements[1]->header="Notification";
+$elements[1]->alias="notification";
+
+$elements[2]=new stdClass();
+$elements[2]->field="`slider`.`order`";
+$elements[2]->sort="1";
+$elements[2]->header="order";
+$elements[2]->alias="order";
+
+$elements[3]=new stdClass();
+$elements[3]->field="`slider`.`status`";
+$elements[3]->sort="1";
+$elements[3]->header="status";
+$elements[3]->alias="status";
+
+$elements[4]=new stdClass();
+$elements[4]->field="`slider`.`alt`";
+$elements[4]->sort="1";
+$elements[4]->header="alt";
+$elements[4]->alias="alt";
+
+$search=$this->input->get_post("search");
+$pageno=$this->input->get_post("pageno");
+$orderby=$this->input->get_post("orderby");
+$orderorder=$this->input->get_post("orderorder");
+$maxrow=$this->input->get_post("maxrow");
+if($maxrow=="")
+{
+}
+if($orderby=="")
+{
+$orderby="order";
+$orderorder="ASC";
+}
+$data["message"]=$this->chintantable->query($pageno,$maxrow,$orderby,$orderorder,$search,$elements,"FROM `slider`","WHERE `slider`.`status`=1 ");
+$this->load->view("json",$data);
+}
 } ?>
