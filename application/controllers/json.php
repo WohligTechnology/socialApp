@@ -416,6 +416,27 @@ $this->load->view("json",$data);
         $data['message']=$this->restapi_model->createenquiry($name,$email,$user,$timestamp,$content,$title);
         $this->load->view("json",$data);
  }
+ public function signup(){
+        $data = json_decode(file_get_contents('php://input'), true);
+		$username=$data['username'];
+		$email=$data['email'];
+		$password=$data['password'];
+		$dob=$data['dob'];
+        $data['message']=$this->restapi_model->signup($username,$email,$password,$dob);
+        $this->load->view("json",$data);
+ }
+ public function signin(){
+        $data = json_decode(file_get_contents('php://input'), true);
+		$username=$data['username'];
+		$password=$data['password'];
+        $data['message']=$this->restapi_model->signin($username,$password);
+        $this->load->view("json",$data);
+ }
+ public function logout(){
+        $this->session->sess_destroy();
+        $data['message']=true;
+        $this->load->view('json',$data);
+ }
 //function getalleventvideo()
 //{
 //$elements=array();
@@ -845,6 +866,10 @@ $id=$this->input->get_post("id");
 $data["message"]=$this->blog_model->getsingleblog($id);
 $this->load->view("json",$data);
 }
+ public function authenticate(){
+ $data["message"]=$this->user_model->authenticate();
+$this->load->view("json",$data);
+ }
 //function getallblogvideo()
 //{
 //$elements=array();
