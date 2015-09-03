@@ -3,9 +3,9 @@ if ( !defined( "BASEPATH" ) )
 exit( "No direct script access allowed" );
 class events_model extends CI_Model
 {
-public function create($status,$title,$timestamp,$content)
+public function create($status,$title,$timestamp,$content,$image,$startdate,$starttime)
 {
-$data=array("status" => $status,"title" => $title,"content" => $content);
+$data=array("status" => $status,"title" => $title,"content" => $content,"image" => $image,"startdate" => $startdate,"starttime" => $starttime);
 $query=$this->db->insert( "webapp_events", $data );
 $id=$this->db->insert_id();
 if(!$query)
@@ -27,9 +27,9 @@ $query->eventvideos=$this->db->query("SELECT `id`, `event`, `videogallery`, `sta
     
 return $query;
 }
-public function edit($id,$status,$title,$timestamp,$content)
+public function edit($id,$status,$title,$timestamp,$content,$image,$startdate,$starttime)
 {
-$data=array("status" => $status,"title" => $title,"timestamp" => $timestamp,"content" => $content);
+$data=array("status" => $status,"title" => $title,"timestamp" => $timestamp,"content" => $content,"image" => $image,"startdate" => $startdate,"starttime" => $starttime);
 $this->db->where( "id", $id );
 $query=$this->db->update( "webapp_events", $data );
 return 1;

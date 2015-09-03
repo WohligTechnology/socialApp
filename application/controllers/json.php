@@ -384,8 +384,8 @@ $elements[4]->alias="content";
 $elements[5]=new stdClass();
 $elements[5]->field="`webapp_events`.`image`";
 $elements[5]->sort="1";
-$elements[5]->header="Content";
-$elements[5]->alias="content";
+$elements[5]->header="image";
+$elements[5]->alias="image";
     
 $elements[6]=new stdClass();
 $elements[6]->field="`webapp_events`.`startdate`";
