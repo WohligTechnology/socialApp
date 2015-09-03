@@ -1001,8 +1001,8 @@ $elements[0]->alias="id";
 $elements[1]=new stdClass();
 $elements[1]->field="`slider`.`image`";
 $elements[1]->sort="1";
-$elements[1]->header="Notification";
-$elements[1]->alias="notification";
+$elements[1]->header="image";
+$elements[1]->alias="image";
 
 $elements[2]=new stdClass();
 $elements[2]->field="`slider`.`order`";
