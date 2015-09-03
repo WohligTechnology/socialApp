@@ -3,11 +3,13 @@
         <h3 class="panel-title">Blog Config </h3>
     </header>
     <div class="panel-body">
+<!--
         <div class="logintype no">
             <div class="checkbox">
                 <label class="form-checkbox form-normal form-primary active form-text">
                     <input type="checkbox"  class="class1"  name="no">No</label>
             </div>   </div> 
+-->
         <div class="logintype cms">
             <div class="checkbox">
                 <label class="form-checkbox form-normal form-primary active form-text">

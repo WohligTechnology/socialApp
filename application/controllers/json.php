@@ -149,6 +149,12 @@ $elements[4]->sort="1";
 $elements[4]->header="Json";
 $elements[4]->alias="json";
     
+$elements[5]=new stdClass();
+$elements[5]->field="`webapp_gallery`.`image`";
+$elements[5]->sort="1";
+$elements[5]->header="image";
+$elements[5]->alias="image";
+    
 
 
 $search=$this->input->get_post("search");
