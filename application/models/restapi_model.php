@@ -53,5 +53,64 @@ return  1;
     $query=$this->db->query("SELECT `id`, `title`, `content`, `text`, `type`, `image` FROM `config`")->result();
        return $query;
     }
+      public function changepassword($id, $oldpassword, $newpassword, $confirmpassword) {
+        $oldpassword = md5($oldpassword);
+        $newpassword = md5($newpassword);
+        $confirmpassword = md5($confirmpassword);
+        if ($newpassword == $confirmpassword) {
+            $useridquery = $this->db->query("SELECT `id` FROM `user` WHERE `password`='$oldpassword'");
+            if ($useridquery->num_rows() == 0) {
+                return 0;
+            } else {
+                $query = $useridquery->row();
+                $userid = $query->id;
+                $updatequery = $this->db->query("UPDATE `user` SET `password`='$newpassword' WHERE `id`='$userid'");
+                return 1;
+            }
+        } else {
+//            echo "New password and confirm password do not match!!!";
+			return -1;
+        }
+    }
+    
+    public function profilesubmit($id,$name,$email,$password,$dob,$contact)
+    {
+        $password=md5($password);
+        $data=array("name" => $name,"email" => $email,"password" => $password,"dob" => $dob,"contact" => $contact);
+        $this->db->where( "id", $id );
+        $query=$this->db->update( "user", $data );
+        if(!$query)
+        return  0;
+        else
+        return  1;
+    }
+    public function searcharticletitle($searchelement){
+        $query=$this->db->query("SELECT `id`, `status`, `title`, `json`, `content`, `timestamp`, `image` FROM `webapp_articles` WHERE `title` LIKE '%$searchelement%'")->result();
+        return $query;
+    } 
+    public function searcheventtitle($searchelement){
+        $query=$this->db->query("SELECT `id`, `status`, `title`, `timestamp`, `content`, `image`, `startdate`, `starttime` FROM `webapp_events` WHERE `title` LIKE '%$searchelement%'")->result();
+        return $query;
+    }  
+    public function searchblogtitle($searchelement){
+        $query=$this->db->query("SELECT `id`, `name`, `title`, `json`, `content`, `timestamp` FROM `webapp_blog` WHERE `name` LIKe '%$searchelement%' OR `title` LIKE '%$searchelement%'")->result();
+        return $query;
+    } 
+    public function searchgalleryname($searchelement){
+        $query=$this->db->query("SELECT `id`, `order`, `status`, `name`, `json`, `timestamp`, `image` FROM `webapp_gallery` WHERE `name` LIKE '%$searchelement%'")->result();
+        return $query;
+    } 
+    public function searchvideogalleryname($searchelement){
+        $query=$this->db->query("SELECT `id`, `order`, `status`, `name`, `json`, `timestamp` FROM `webapp_videogallery` WHERE `name` LIKE '%$searchelement%'")->result();
+        return $query;
+    }
+    public function searchelement($searchelement){
+     $query['article']=$this->db->query("SELECT `id`, `status`, `title`, `json`, `content`, `timestamp`, `image` FROM `webapp_articles` WHERE `title` LIKE '%$searchelement%'")->result();
+                $query['events']=$this->db->query("SELECT `id`, `status`, `title`, `timestamp`, `content`, `image`, `startdate`, `starttime` FROM `webapp_events` WHERE `title` LIKE '%$searchelement%'")->result();
+           $query['blog']=$this->db->query("SELECT `id`, `name`, `title`, `json`, `content`, `timestamp` FROM `webapp_blog` WHERE `name` LIKe '%$searchelement%' OR `title` LIKE '%$searchelement%'")->result();
+          $query['gallery']=$this->db->query("SELECT `id`, `order`, `status`, `name`, `json`, `timestamp`, `image` FROM `webapp_gallery` WHERE `name` LIKE '%$searchelement%'")->result();
+          $query['videogallery']=$this->db->query("SELECT `id`, `order`, `status`, `name`, `json`, `timestamp` FROM `webapp_videogallery` WHERE `name` LIKE '%$searchelement%'")->result();
+        return $query;
+    }
 }
 ?>
