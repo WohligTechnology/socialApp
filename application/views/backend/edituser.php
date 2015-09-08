@@ -43,6 +43,12 @@
                     <input type="text" id="normal-field" class="form-control" name="socialid" value="<?php echo set_value('socialid',$before->socialid);?>">
                 </div>
             </div>
+                 <div class=" form-group">
+                            <label class="col-sm-2 control-label" for="normal-field">Contact</label>
+                            <div class="col-sm-4">
+                                <input type="text" id="normal-field" class="form-control" name="contact" value="<?php echo set_value('contact',$before->contact);?>">
+                            </div>
+                        </div>
 
             <div class=" form-group">
                 <label class="col-sm-2 control-label">logintype</label>

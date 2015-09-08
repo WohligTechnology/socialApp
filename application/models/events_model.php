@@ -20,10 +20,10 @@ $query=$this->db->get("webapp_events")->row();
 return $query;
 }
 function getsingleevents($id){
-$query=$this->db->query("SELECT `id`, `status`, `title`, `timestamp`, `content` FROM `webapp_events` WHERE `status`=1 AND `id`='$id'")->row();
+$query=$this->db->query("SELECT `id`, `status`, `title`, date(`timestamp`) as `timestamp`, `content`,`image` FROM `webapp_events` WHERE `status`=1 AND `id`='$id'")->row();
 $query->eventimages=$this->db->query("SELECT `id`, `event`, `status`, `order`, `image` FROM `webapp_eventimages` WHERE `event`='$id' 
 AND `status`=1")->result();
-$query->eventvideos=$this->db->query("SELECT `id`, `event`, `videogallery`, `status`, `order` FROM `webapp_eventvideo` WHERE `status`=1 AND `event`='$id'")->result();
+$query->eventvideos=$this->db->query("SELECT `id`, `event`, `videogallery`, `status`, `order`,`url` FROM `webapp_eventvideo` WHERE `status`=1 AND `event`='$id'")->result();
     
 return $query;
 }

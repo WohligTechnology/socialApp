@@ -74,7 +74,7 @@ class Site extends CI_Controller
             $socialid=$this->input->post('socialid');
             $logintype=$this->input->post('logintype');
             $json=$this->input->post('json');
-//            $category=$this->input->post('category');
+            $contact=$this->input->post('contact');
             
             $config['upload_path'] = './uploads/';
 			$config['allowed_types'] = 'gif|jpg|png|jpeg';
@@ -111,7 +111,7 @@ class Site extends CI_Controller
                 
 			}
             
-			if($this->user_model->create($name,$email,$password,$accesslevel,$status,$socialid,$logintype,$image,$json)==0)
+			if($this->user_model->create($name,$email,$password,$accesslevel,$status,$socialid,$logintype,$image,$json,$contact)==0)
 			$data['alerterror']="New user could not be created.";
 			else
 			$data['alertsuccess']="User created Successfully.";
@@ -259,7 +259,7 @@ class Site extends CI_Controller
             $socialid=$this->input->get_post('socialid');
             $logintype=$this->input->get_post('logintype');
             $json=$this->input->get_post('json');
-//            $category=$this->input->get_post('category');
+            $contact=$this->input->get_post('contact');
             
             $config['upload_path'] = './uploads/';
 			$config['allowed_types'] = 'gif|jpg|png|jpeg';
@@ -303,7 +303,7 @@ class Site extends CI_Controller
                 $image=$image->image;
             }
             
-			if($this->user_model->edit($id,$name,$email,$password,$accesslevel,$status,$socialid,$logintype,$image,$json)==0)
+			if($this->user_model->edit($id,$name,$email,$password,$accesslevel,$status,$socialid,$logintype,$image,$json,$contact)==0)
 			$data['alerterror']="User Editing was unsuccesful";
 			else
 			$data['alertsuccess']="User edited Successfully.";
@@ -1714,6 +1714,12 @@ $elements[5]->field="`webapp_eventvideo`.`event`";
 $elements[5]->sort="1";
 $elements[5]->header="eventid";
 $elements[5]->alias="eventid";
+    
+$elements[6]=new stdClass();
+$elements[6]->field="`webapp_eventvideo`.`url`";
+$elements[6]->sort="1";
+$elements[6]->header="Url";
+$elements[6]->alias="url";
 $search=$this->input->get_post("search");
 $pageno=$this->input->get_post("pageno");
 $orderby=$this->input->get_post("orderby");
@@ -1728,7 +1734,7 @@ if($orderby=="")
 $orderby="id";
 $orderorder="ASC";
 }
-$data["message"]=$this->chintantable->query($pageno,$maxrow,$orderby,$orderorder,$search,$elements,"FROM `webapp_eventvideo` LEFT OUTER JOIN `statuses` ON `statuses`.`id`=`webapp_eventvideo`.`status` LEFT OUTER JOIN `webapp_videogallery` ON `webapp_videogallery`.`id`=`webapp_eventvideo`.`videogallery` LEFT OUTER JOIN `webapp_events` ON `webapp_events`.`id`=`webapp_eventvideo`.`event`","WHERE `webapp_eventvideo`.`videogallery`='$id'");
+$data["message"]=$this->chintantable->query($pageno,$maxrow,$orderby,$orderorder,$search,$elements,"FROM `webapp_eventvideo` LEFT OUTER JOIN `statuses` ON `statuses`.`id`=`webapp_eventvideo`.`status` LEFT OUTER JOIN `webapp_videogallery` ON `webapp_videogallery`.`id`=`webapp_eventvideo`.`videogallery` LEFT OUTER JOIN `webapp_events` ON `webapp_events`.`id`=`webapp_eventvideo`.`event`","WHERE `webapp_eventvideo`.`event`='$id'");
 $this->load->view("json",$data);
 }
 
@@ -1771,7 +1777,8 @@ $event=$this->input->get_post("event");
 $videogallery=$this->input->get_post("videogallery");
 $status=$this->input->get_post("status");
 $order=$this->input->get_post("order");
-if($this->eventvideo_model->create($event,$videogallery,$status,$order)==0)
+$url=$this->input->get_post("url");
+if($this->eventvideo_model->create($event,$videogallery,$status,$order,$url)==0)
 $data["alerterror"]="New eventvideo could not be created.";
 else
 $data["alertsuccess"]="eventvideo created Successfully.";
@@ -1822,7 +1829,8 @@ $event=$this->input->get_post("event");
 $videogallery=$this->input->get_post("videogallery");
 $status=$this->input->get_post("status");
 $order=$this->input->get_post("order");
-if($this->eventvideo_model->edit($id,$event,$videogallery,$status,$order)==0)
+    $url=$this->input->get_post("url");
+if($this->eventvideo_model->edit($id,$event,$videogallery,$status,$order,$url)==0)
 $data["alerterror"]="New eventvideo could not be Updated.";
 else
 $data["alertsuccess"]="eventvideo Updated Successfully.";
@@ -2070,8 +2078,8 @@ if($this->eventimages_model->edit($id,$event,$status,$order,$image)==0)
 $data["alerterror"]="New eventimages could not be Updated.";
 else
 $data["alertsuccess"]="eventimages Updated Successfully.";
-$data["redirect"]="site/vieweventimages";
-$this->load->view("redirect",$data);
+$data["redirect"]="site/vieweventimages?id=".$event;
+$this->load->view("redirect2",$data);
 }
 }
 public function deleteeventimages()
@@ -2079,8 +2087,8 @@ public function deleteeventimages()
 $access=array("1");
 $this->checkaccess($access);
 $this->eventimages_model->delete($this->input->get("id"));
-$data["redirect"]="site/vieweventimages";
-$this->load->view("redirect",$data);
+$data["redirect"]="site/vieweventimages?id=".$this->input->get('eventid');
+$this->load->view("redirect2",$data);
 }
 public function viewenquiry()
 {

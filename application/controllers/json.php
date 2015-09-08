@@ -456,7 +456,8 @@ $this->load->view("json",$data);
 }
 public function getsingleevents()
 {
-$id=$this->input->get_post("id");
+      $data = json_decode(file_get_contents('php://input'), true);
+		$id=$data['id'];
 $data["message"]=$this->events_model->getsingleevents($id);
 $this->load->view("json",$data);
 }
@@ -466,7 +467,6 @@ $this->load->view("json",$data);
 		$name=$data['name'];
 		$email=$data['email'];
 		$user=$data['user'];
-		$timestamp=$data['timestamp'];
 		$content=$data['content'];
 		$title=$data['title'];
       if(empty($data))
@@ -474,7 +474,7 @@ $this->load->view("json",$data);
 		$data['message']=0;
 		}
 	    else{
-        $data['message']=$this->restapi_model->createenquiry($name,$email,$user,$timestamp,$content,$title);
+        $data['message']=$this->restapi_model->createenquiry($name,$email,$user,$content,$title);
         }
         $this->load->view("json",$data);
  }
@@ -936,7 +936,8 @@ $this->load->view("json",$data);
 }
 public function getsingleblog()
 {
-$id=$this->input->get_post("id");
+$data = json_decode(file_get_contents('php://input'), true);
+$id=$data['id'];
 $data["message"]=$this->blog_model->getsingleblog($id);
 $this->load->view("json",$data);
 }
