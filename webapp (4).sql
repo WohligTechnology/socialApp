@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 03, 2015 at 07:28 AM
+-- Generation Time: Sep 08, 2015 at 11:17 AM
 -- Server version: 5.6.24
 -- PHP Version: 5.5.24
 
@@ -60,11 +60,11 @@ CREATE TABLE IF NOT EXISTS `config` (
 --
 
 INSERT INTO `config` (`id`, `title`, `content`, `text`, `type`, `image`) VALUES
-(4, 'Login122', 'want Login122', '[{"name":"email","value":true},{"name":"Google","value":true,"appid":"dfgafd","secret":"fgadfg"},{"name":"Facebook","value":true,"appid":"dgsdgad","secret":"fgadfgda"},{"name":"twitter","value":true,"appid":"DSFDS","secret":"DSFDS"},{"name":"instagram","value":true,"appid":"sdsds","secret":"dsF"}]', 2, ''),
-(5, 'Blogs122ttdgd', 'want Blog1222ttgsd', '[{"name":"no","value":true},{"name":"cms","value":true},{"name":"wordpress","value":true,"appid":"ggss","secret":"fgdf"},{"name":"tumblr","value":true,"appid":"gsdg","secret":"gsd"}]', 1, ''),
+(4, 'Login122', 'want Login122', '[{"name":"email","value":true},{"name":"Google","value":false,"appid":"","secret":""},{"name":"Facebook","value":true,"appid":"","secret":""},{"name":"twitter","value":false,"appid":"","secret":""},{"name":"instagram","value":true,"appid":"","secret":""}]', 2, ''),
+(5, 'Blogs122ttdgd', 'want Blog1222ttgsd', '[{"name":"cms","value":false},{"name":"wordpress","value":true,"appid":"","secret":""},{"name":"tumblr","value":false,"appid":"","secret":""}]', 1, ''),
 (6, 'Gallery', 'Gallery Content', 'Drop down yes', 3, ''),
 (7, 'Video Gallery', 'want Video Gallery', 'Drop down yes', 3, ''),
-(8, 'Events', 'Event content', 'Drop down no', 3, ''),
+(8, 'Events', 'Event content', 'Drop down yes', 3, ''),
 (9, 'Logo', 'Add logo here', 'download_(2)3.jpg', 2, 'download_(2)3.jpg'),
 (10, 'Background Image', 'Background Image content', 'download_(1)2.jpg', 2, 'download_(1)2.jpg'),
 (11, 'Banner', 'want banner', 'Drop down no', 3, ''),
@@ -180,14 +180,16 @@ CREATE TABLE IF NOT EXISTS `slider` (
   `order` int(11) NOT NULL,
   `status` int(11) NOT NULL,
   `alt` varchar(255) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `slider`
 --
 
 INSERT INTO `slider` (`id`, `image`, `order`, `status`, `alt`) VALUES
-(1, 'ArmaanPatraRollsEdit.jpg', 1, 1, 'slider1');
+(2, 'Event-management.png', 1, 1, ''),
+(3, 'Event-management.png', 2, 1, ''),
+(4, 'Event-management.png', 3, 1, '');
 
 -- --------------------------------------------------------
 
@@ -256,23 +258,25 @@ CREATE TABLE IF NOT EXISTS `user` (
   `twitter` varchar(255) DEFAULT NULL,
   `google` varchar(255) DEFAULT NULL,
   `country` varchar(255) DEFAULT NULL,
-  `instagram` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=latin1;
+  `instagram` int(11) NOT NULL,
+  `contact` varchar(20) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`id`, `name`, `password`, `email`, `accesslevel`, `timestamp`, `status`, `image`, `username`, `socialid`, `logintype`, `json`, `dob`, `street`, `address`, `city`, `state`, `pincode`, `facebook`, `twitter`, `google`, `country`, `instagram`) VALUES
-(1, 'wohlig', 'a63526467438df9566c508027d9cb06b', 'wohlig@wohlig.com', 1, '0000-00-00 00:00:00', 1, 'ArmaanPatraRollsEdit2.jpg', '', '', '1', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0),
-(4, 'pratik', '0cb2b62754dfd12b6ed0161d4b447df7', 'pratik@wohlig.com', 1, '2014-05-12 06:52:44', 1, NULL, 'pratik', '1', '1', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0),
-(5, 'wohlig123', 'wohlig123', 'wohlig1@wohlig.com', 1, '2014-05-12 06:52:44', 1, NULL, '', '', '0', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0),
-(6, 'wohlig1', 'a63526467438df9566c508027d9cb06b', 'wohlig2@wohlig.com', 1, '2014-05-12 06:52:44', 1, NULL, '', '', '0', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0),
-(21, 'Pooja Thakare', '', '', 3, '2015-09-02 07:19:59', 1, 'https://graph.facebook.com/444037772434450/picture?width=150&height=150', '', '444037772434450', 'Facebook', '', '0000-00-00', '', ',', '', '', '', '444037772434450', '', '', '', 0),
-(22, 'poojathakare55', '', '', 3, '2015-09-02 08:18:46', 1, 'http://pbs.twimg.com/profile_images/638413672780443648/CSoclRQQ_normal.jpg', '', '3104340877', 'Twitter', '', '0000-00-00', '', ',Navi Mumbai, Maharashtra', '', '', '', '', '3104340877', '', '', 0),
-(24, 'Dhaval Gala', '', '', 3, '2015-09-02 08:34:39', 1, 'https://igcdn-photos-b-a.akamaihd.net/hphotos-ak-xfp1/t51.2885-19/11049183_403558949816473_1946831034_a.jpg', '', '999244606', 'Instagram', '', '0000-00-00', '', ',', '', '', '', '', '', '', '', 999244606),
-(26, 'Pooja Thakare', '', 'pooja.wohlig@gmail.com', 3, '2015-09-02 08:38:08', 1, 'https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/photo.jpg', '', '103402210128529539675', 'Google', '', '0000-00-00', '', ',', '', '', '', '', '', '103402210128529539675', '', 0),
-(29, NULL, '613d3b9c91e9445abaeca02f2342e5a6', 'xyz@djd.dfd', NULL, '2015-09-02 10:09:46', NULL, NULL, 'xyz', '', '', '', '2015-09-12', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0);
+INSERT INTO `user` (`id`, `name`, `password`, `email`, `accesslevel`, `timestamp`, `status`, `image`, `username`, `socialid`, `logintype`, `json`, `dob`, `street`, `address`, `city`, `state`, `pincode`, `facebook`, `twitter`, `google`, `country`, `instagram`, `contact`) VALUES
+(1, 'wohlig', 'a63526467438df9566c508027d9cb06b', 'wohlig@wohlig.com', 1, '0000-00-00 00:00:00', 1, 'ArmaanPatraRollsEdit2.jpg', '', '', '1', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, ''),
+(4, 'wohlig', 'a63526467438df9566c508027d9cb06b', 'swati@email.com', 1, '2014-05-12 06:52:44', 1, NULL, 'wohlig', '1', '1', '', '0000-00-00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, '9898798889'),
+(5, 'wohlig123', 'wohlig123', 'wohlig1@wohlig.com', 1, '2014-05-12 06:52:44', 1, NULL, '', '', '0', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, ''),
+(6, 'wohlig1', 'a63526467438df9566c508027d9cb06b', 'wohlig2@wohlig.com', 1, '2014-05-12 06:52:44', 1, NULL, '', '', '0', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, ''),
+(21, 'Pooja Thakare', '47439c518d54f8af50246e9b1d4486ae', '', 3, '2015-09-02 07:19:59', 1, 'https://graph.facebook.com/444037772434450/picture?width=150&height=150', '', '444037772434450', 'Facebook', '', '0000-00-00', '', ',', '', '', '', '444037772434450', '', '', '', 0, ''),
+(22, 'poojathakare55', '', '', 3, '2015-09-02 08:18:46', 1, 'http://pbs.twimg.com/profile_images/638413672780443648/CSoclRQQ_normal.jpg', '', '3104340877', 'Twitter', '', '0000-00-00', '', ',Navi Mumbai, Maharashtra', '', '', '', '', '3104340877', '', '', 0, ''),
+(24, 'Dhaval Gala', '', '', 3, '2015-09-02 08:34:39', 1, 'https://igcdn-photos-b-a.akamaihd.net/hphotos-ak-xfp1/t51.2885-19/11049183_403558949816473_1946831034_a.jpg', '', '999244606', 'Instagram', '', '0000-00-00', '', ',', '', '', '', '', '', '', '', 999244606, ''),
+(26, 'Pooja Thakare', '', 'pooja.wohlig@gmail.com', 3, '2015-09-02 08:38:08', 1, 'https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/photo.jpg', '', '103402210128529539675', 'Google', '', '0000-00-00', '', ',', '', '', '', '', '', '103402210128529539675', '', 0, ''),
+(30, 'Dhaval Gala', '', 'dhavalwohlig@gmail.com', 3, '2015-09-03 05:40:25', 1, 'https://lh5.googleusercontent.com/-XpnZx6dcp2M/AAAAAAAAAAI/AAAAAAAAADE/uIq9LgBS4uA/photo.jpg', '', '105578617147285044793', 'Google', '', '0000-00-00', '', ',', '', '', '', '', '', '105578617147285044793', '', 0, ''),
+(31, 'pooja', 'a63526467438df9566c508027d9cb06b', 'pooja@wohlig.com', 1, '2014-05-12 06:52:44', 1, NULL, 'swati', '1', '1', '', '1992-12-17', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, '8979879879');
 
 -- --------------------------------------------------------
 
@@ -338,18 +342,19 @@ CREATE TABLE IF NOT EXISTS `webapp_articles` (
   `title` varchar(255) NOT NULL,
   `json` text NOT NULL,
   `content` text NOT NULL,
-  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `image` varchar(255) NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `webapp_articles`
 --
 
-INSERT INTO `webapp_articles` (`id`, `status`, `title`, `json`, `content`, `timestamp`) VALUES
-(1, 1, 'Kalam Article', '[{"label":"Meta Title","type":"text","classes":"","placeholder":"","value":"1"},{"label":"Meta Description","type":"text","classes":"","placeholder":"","value":"1"}]', 'Kalam content', '2015-09-01 11:04:02'),
-(2, 0, '1', '[{"label":"Meta Title","type":"text","classes":"","placeholder":"","value":"1"},{"label":"Meta Description","type":"text","classes":"","placeholder":"","value":"1"}]', '1', '2015-09-01 11:04:02'),
-(3, 1, '2', '[{"label":"Meta Title","type":"text","classes":"","placeholder":"","value":"2"},{"label":"Meta keyword","type":"text","classes":"","placeholder":"","value":"2"},{"label":"Meta Description","type":"text","classes":"","placeholder":"","value":"2"}]', '2', '2015-09-01 11:04:02'),
-(4, 1, 'sdtyguhij', '[{"label":"Meta Title","type":"text","classes":"","placeholder":"","value":""},{"label":"Meta Description","type":"text","classes":"","placeholder":"","value":""}]', 'wsdfgh', '2015-09-01 11:15:33');
+INSERT INTO `webapp_articles` (`id`, `status`, `title`, `json`, `content`, `timestamp`, `image`) VALUES
+(1, 1, 'Kalam Article', '[{"label":"Meta Title","type":"text","classes":"","placeholder":"","value":"1"},{"label":"Meta Description","type":"text","classes":"","placeholder":"","value":"1"}]', 'Kalam content', '2015-09-01 11:04:02', ''),
+(2, 0, '1', '[{"label":"Meta Title","type":"text","classes":"","placeholder":"","value":"1"},{"label":"Meta Description","type":"text","classes":"","placeholder":"","value":"1"}]', '1', '2015-09-01 11:04:02', ''),
+(3, 1, '2', '[{"label":"Meta Title","type":"text","classes":"","placeholder":"","value":"2"},{"label":"Meta keyword","type":"text","classes":"","placeholder":"","value":"2"},{"label":"Meta Description","type":"text","classes":"","placeholder":"","value":"2"}]', '2', '2015-09-01 11:04:02', ''),
+(4, 1, 'sdtyguhij', '[{"label":"Meta Title","type":"text","classes":"","placeholder":"","value":""},{"label":"Meta Description","type":"text","classes":"","placeholder":"","value":""}]', 'wsdfgh', '2015-09-01 11:15:33', '');
 
 -- --------------------------------------------------------
 
@@ -371,9 +376,9 @@ CREATE TABLE IF NOT EXISTS `webapp_blog` (
 --
 
 INSERT INTO `webapp_blog` (`id`, `name`, `title`, `json`, `content`, `timestamp`) VALUES
-(1, 'blog1', 'blog1 title', 'ghjk', 'ghj', '2015-09-01 11:23:54'),
-(2, 'blog2', 'blog2 title', 'drtfgyhjk', 'drtgyuj', '2015-09-01 11:23:54'),
-(3, 'blog3', 'blog3', '[{"label":"Meta Title","type":"text","classes":"","placeholder":"","value":"blog5"},{"label":"Meta Description","type":"text","classes":"","placeholder":"","value":"blog4"}]', 'blog3', '2015-09-01 11:23:54');
+(1, 'Nodejs', 'Server side', 'ghjk', 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. ', '2015-09-08 08:09:14'),
+(2, 'wordpress', 'anne frank', 'drtfgyhjk', 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. ', '2015-09-08 07:21:58'),
+(3, 'name', 'blog3', '[{"label":"Meta Title","type":"text","classes":"","placeholder":"","value":"blog5"},{"label":"Meta Description","type":"text","classes":"","placeholder":"","value":"blog4"}]', 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. ', '2015-09-08 07:22:02');
 
 -- --------------------------------------------------------
 
@@ -394,7 +399,7 @@ CREATE TABLE IF NOT EXISTS `webapp_blogimages` (
 --
 
 INSERT INTO `webapp_blogimages` (`id`, `blog`, `status`, `order`, `image`) VALUES
-(1, 1, 1, 1, 'ArmaanMoondalEdit1.jpg'),
+(1, 1, 1, 1, 'download_(2)6.jpg'),
 (2, 2, 1, 1, 'images_(1)1.jpg'),
 (3, 1, 1, 2, 'download_(1)3.jpg');
 
@@ -417,7 +422,7 @@ CREATE TABLE IF NOT EXISTS `webapp_blogvideo` (
 --
 
 INSERT INTO `webapp_blogvideo` (`id`, `blog`, `status`, `order`, `video`) VALUES
-(1, 1, 1, 1, ''),
+(1, 1, 1, 1, '4q8GwxethQ0'),
 (2, 2, 1, 1, 'one');
 
 -- --------------------------------------------------------
@@ -434,14 +439,18 @@ CREATE TABLE IF NOT EXISTS `webapp_enquiry` (
   `title` varchar(255) NOT NULL,
   `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `content` text NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `webapp_enquiry`
 --
 
 INSERT INTO `webapp_enquiry` (`id`, `user`, `name`, `email`, `title`, `timestamp`, `content`) VALUES
-(1, 4, 'Job purpose', 'erre@dy.djhfa', 'Job', '0000-00-00 00:00:00', 'drtgyhui');
+(1, 4, 'Job purpose', 'erre@dy.djhfa', 'Job', '0000-00-00 00:00:00', 'drtgyhui'),
+(2, NULL, 'cgvhbjnk', 'sgdfjg@guayh.dhg', 'subjsdsrtgcs', '2015-09-07 11:20:59', 'commmdGhD'),
+(3, NULL, 'dfghjk', 'ehjga@jhgdaj.dakj', 'cghjk', '2015-09-07 11:22:05', 'htgr'),
+(4, NULL, 'rftghj', 'uae@eadf.dfad', 'dghjk', '2015-09-07 11:22:55', 'rtghj'),
+(5, NULL, 'try', 'dfghj@hdb.de', 'sedghjk', '2015-09-07 12:03:20', 'ghjk');
 
 -- --------------------------------------------------------
 
@@ -455,16 +464,20 @@ CREATE TABLE IF NOT EXISTS `webapp_eventimages` (
   `status` int(11) NOT NULL,
   `order` int(11) NOT NULL,
   `image` varchar(255) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `webapp_eventimages`
 --
 
 INSERT INTO `webapp_eventimages` (`id`, `event`, `status`, `order`, `image`) VALUES
-(1, 1, 1, 1, 'image1'),
-(2, 2, 1, 1, 'image2'),
-(3, 1, 1, 2, 'image1.ss');
+(1, 1, 1, 1, 'delorean2.jpg'),
+(2, 2, 1, 1, '2.jpg'),
+(3, 3, 1, 1, '3.jpg'),
+(4, 4, 1, 1, '4.jpg'),
+(5, 5, 1, 1, '5.jpg'),
+(6, 6, 1, 1, '6.jpg'),
+(7, 1, 1, 2, 'delorean.jpg');
 
 -- --------------------------------------------------------
 
@@ -477,17 +490,20 @@ CREATE TABLE IF NOT EXISTS `webapp_events` (
   `status` int(11) NOT NULL,
   `title` varchar(255) NOT NULL,
   `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `content` text NOT NULL
+  `content` text NOT NULL,
+  `image` varchar(255) NOT NULL,
+  `startdate` date NOT NULL,
+  `starttime` time NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `webapp_events`
 --
 
-INSERT INTO `webapp_events` (`id`, `status`, `title`, `timestamp`, `content`) VALUES
-(1, 1, 'First event', '2015-09-01 07:16:47', 'cvghbjnkm'),
-(2, 1, 'Secnd event', '2015-09-01 07:16:54', 'cgvhbjk'),
-(3, 1, 'Third event', '2015-09-01 07:17:03', '0');
+INSERT INTO `webapp_events` (`id`, `status`, `title`, `timestamp`, `content`, `image`, `startdate`, `starttime`) VALUES
+(1, 1, 'Sona Mohaptra', '2015-09-03 07:46:24', 'Live at Twinhouse Cafe', 'Event-management5.png', '2015-12-15', '20:00:00'),
+(2, 1, 'Sonu Nigam', '2015-09-03 07:48:06', 'Live at Twinhouse Cafe', '2.jpg', '2015-12-23', '21:00:00'),
+(3, 1, 'Music Concert', '2015-09-03 07:49:17', 'Live at Macdee Cafe', '3.jpg', '2015-12-27', '21:00:00');
 
 -- --------------------------------------------------------
 
@@ -500,16 +516,21 @@ CREATE TABLE IF NOT EXISTS `webapp_eventvideo` (
   `event` int(11) NOT NULL,
   `videogallery` int(11) NOT NULL,
   `status` int(11) NOT NULL,
-  `order` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+  `order` int(11) NOT NULL,
+  `url` varchar(255) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `webapp_eventvideo`
 --
 
-INSERT INTO `webapp_eventvideo` (`id`, `event`, `videogallery`, `status`, `order`) VALUES
-(1, 1, 0, 2, 1),
-(2, 1, 2, 1, 2);
+INSERT INTO `webapp_eventvideo` (`id`, `event`, `videogallery`, `status`, `order`, `url`) VALUES
+(1, 1, 1, 1, 1, '4q8GwxethQ0'),
+(3, 3, 3, 1, 4, 'sdrtyguhj'),
+(4, 1, 4, 1, 2, 'cvgbjnm'),
+(5, 2, 0, 0, 0, ''),
+(6, 2, 0, 0, 0, ''),
+(7, 2, 0, 0, 0, '');
 
 -- --------------------------------------------------------
 
@@ -548,17 +569,18 @@ CREATE TABLE IF NOT EXISTS `webapp_gallery` (
   `status` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   `json` text NOT NULL,
-  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `image` varchar(255) NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `webapp_gallery`
 --
 
-INSERT INTO `webapp_gallery` (`id`, `order`, `status`, `name`, `json`, `timestamp`) VALUES
-(1, 1, 1, 'Phone Gallery', 'cjk', '2015-09-01 11:23:26'),
-(3, 3, 1, 'Car gallery', 'xdcvgb', '2015-09-01 11:23:26'),
-(4, 3, 1, 'abcd', '[{"label":"Meta Title","type":"text","classes":"","placeholder":"","value":"abcd1"},{"label":"Meta Description","type":"text","classes":"","placeholder":"","value":"abcd1"}]', '2015-09-01 11:23:26');
+INSERT INTO `webapp_gallery` (`id`, `order`, `status`, `name`, `json`, `timestamp`, `image`) VALUES
+(1, 1, 1, 'Phone Gallery', 'cjk', '2015-09-03 12:05:57', '41D5vU4I1NL.jpg'),
+(3, 3, 1, 'Car gallery', 'xdcvgb', '2015-09-03 12:06:21', '41D5vU4I1NL3.jpg'),
+(4, 3, 1, 'photo', '[{"label":"Meta Title","type":"text","classes":"","placeholder":"","value":"abcd1"},{"label":"Meta Description","type":"text","classes":"","placeholder":"","value":"abcd1"}]', '2015-09-07 06:00:46', '41D5vU4I1NL2.jpg');
 
 -- --------------------------------------------------------
 
@@ -580,10 +602,10 @@ CREATE TABLE IF NOT EXISTS `webapp_galleryimage` (
 --
 
 INSERT INTO `webapp_galleryimage` (`id`, `gallery`, `order`, `status`, `image`, `alt`) VALUES
-(1, 1, 1, 1, 'ArmaanMoondalEdit.jpg', 'wwer'),
-(2, 1, 1, 1, 'download.jpg', ''),
+(1, 1, 1, 1, 'download_(2)4.jpg', 'wwer'),
+(2, 1, 1, 1, 'download_(2)5.jpg', ''),
 (4, 3, 1, 1, 'download_(2).jpg', 'srtgyhuj'),
-(5, 3, 2, 0, 'download3.jpg', 'wrextury'),
+(5, 3, 2, 1, 'images_(1)1.jpg', 'wrextury'),
 (6, 3, 3, 1, 'images_(1).jpg', 'tystryt');
 
 -- --------------------------------------------------------
@@ -635,7 +657,7 @@ CREATE TABLE IF NOT EXISTS `webapp_notificationuser` (
 
 INSERT INTO `webapp_notificationuser` (`id`, `notification`, `user`, `timestamp`, `timestamp_receive`) VALUES
 (1, 1, 18, '2015-08-21 12:29:36', '0000-00-00 00:00:00'),
-(2, 2, 18, '2015-08-20 07:18:45', '0000-00-00 00:00:00'),
+(2, 2, 0, '2015-08-20 07:18:45', '0000-00-00 00:00:00'),
 (3, 3, 18, '2015-08-22 07:18:45', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
@@ -651,7 +673,7 @@ CREATE TABLE IF NOT EXISTS `webapp_videogallery` (
   `name` varchar(255) NOT NULL,
   `json` text NOT NULL,
   `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `webapp_videogallery`
@@ -659,7 +681,10 @@ CREATE TABLE IF NOT EXISTS `webapp_videogallery` (
 
 INSERT INTO `webapp_videogallery` (`id`, `order`, `status`, `name`, `json`, `timestamp`) VALUES
 (1, 1, 0, 'Video gallery name', 'cvgbhjn', '2015-09-01 11:24:22'),
-(2, 2, 1, '2', '[{"label":"Meta Title","type":"text","classes":"","placeholder":"","value":"3"},{"label":"Meta Description","type":"text","classes":"","placeholder":"","value":"3"}]', '2015-09-01 11:24:22');
+(2, 2, 1, 'A R Rahman', '[{"label":"Meta Title","type":"text","classes":"","placeholder":"","value":"3"},{"label":"Meta Description","type":"text","classes":"","placeholder":"","value":"3"}]', '2015-09-05 05:59:05'),
+(3, 3, 1, 'Music Concert', '[{"label":"Meta Title","type":"text","classes":"","placeholder":"","value":"3"},{"label":"Meta Description","type":"text","classes":"","placeholder":"","value":"3"}]', '2015-09-05 05:57:22'),
+(4, 4, 1, 'Frozen Foods', '[{"label":"Meta Title","type":"text","classes":"","placeholder":"","value":"3"},{"label":"Meta Description","type":"text","classes":"","placeholder":"","value":"3"}]', '2015-09-05 05:57:22'),
+(5, 5, 1, 'Akon', '[{"label":"Meta Title","type":"text","classes":"","placeholder":"","value":"3"},{"label":"Meta Description","type":"text","classes":"","placeholder":"","value":"3"}]', '2015-09-05 05:57:22');
 
 -- --------------------------------------------------------
 
@@ -673,17 +698,20 @@ CREATE TABLE IF NOT EXISTS `webapp_videogalleryvideo` (
   `status` int(11) NOT NULL,
   `videogallery` int(11) NOT NULL,
   `url` varchar(255) NOT NULL,
-  `alt` varchar(255) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+  `alt` text NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `webapp_videogalleryvideo`
 --
 
 INSERT INTO `webapp_videogalleryvideo` (`id`, `order`, `status`, `videogallery`, `url`, `alt`) VALUES
-(1, 1, 1, 1, 'http://sfa.com', 'waesrdt'),
-(2, 1, 1, 2, 'http://sfa.com', 'waesrdt'),
-(3, 1, 1, 2, 'http://webapp.com', 'waesrdt');
+(1, 1, 1, 1, '4q8GwxethQ0', 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. '),
+(2, 1, 1, 2, 'iZuHBkSD_m8', 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. '),
+(3, 1, 1, 3, '-JKtWOqARa4', 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. '),
+(4, 1, 1, 4, '0GWWcwpGosw', 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. '),
+(5, 1, 1, 5, 'U87NGlHImAU', 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. '),
+(6, 7, 1, 5, 'iZuHBkSD_m8', 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. ');
 
 --
 -- Indexes for dumped tables
@@ -861,7 +889,7 @@ ALTER TABLE `menu`
 -- AUTO_INCREMENT for table `slider`
 --
 ALTER TABLE `slider`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `statuses`
 --
@@ -876,7 +904,7 @@ ALTER TABLE `type`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=30;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=32;
 --
 -- AUTO_INCREMENT for table `userlog`
 --
@@ -906,12 +934,12 @@ ALTER TABLE `webapp_blogvideo`
 -- AUTO_INCREMENT for table `webapp_enquiry`
 --
 ALTER TABLE `webapp_enquiry`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `webapp_eventimages`
 --
 ALTER TABLE `webapp_eventimages`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT for table `webapp_events`
 --
@@ -921,7 +949,7 @@ ALTER TABLE `webapp_events`
 -- AUTO_INCREMENT for table `webapp_eventvideo`
 --
 ALTER TABLE `webapp_eventvideo`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT for table `webapp_frontmenu`
 --
@@ -951,12 +979,12 @@ ALTER TABLE `webapp_notificationuser`
 -- AUTO_INCREMENT for table `webapp_videogallery`
 --
 ALTER TABLE `webapp_videogallery`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `webapp_videogalleryvideo`
 --
 ALTER TABLE `webapp_videogalleryvideo`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

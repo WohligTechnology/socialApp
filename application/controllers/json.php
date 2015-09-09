@@ -918,6 +918,12 @@ $elements[4]->sort="1";
 $elements[4]->header="Content";
 $elements[4]->alias="content";
 
+$elements[5]=new stdClass();
+$elements[5]->field="date(`webapp_blog`.`timestamp`)";
+$elements[5]->sort="1";
+$elements[5]->header="timestamp";
+$elements[5]->alias="timestamp";
+
 $search=$this->input->get_post("search");
 $pageno=$this->input->get_post("pageno");
 $orderby=$this->input->get_post("orderby");
@@ -941,10 +947,11 @@ $id=$data['id'];
 $data["message"]=$this->blog_model->getsingleblog($id);
 $this->load->view("json",$data);
 }
- public function authenticate(){
- $data["message"]=$this->user_model->authenticate();
-$this->load->view("json",$data);
- }
+  public function authenticate() {
+
+        $data['message'] = $this->user_model->authenticate();
+        $this->load->view('json', $data);
+    }
 //function getallblogvideo()
 //{
 //$elements=array();
