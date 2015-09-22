@@ -89,8 +89,9 @@ return  1;
         $data=array("name" => $name,"email" => $email,"dob" => $dob,"contact" => $contact,"address" => $location);
         $this->db->where( "id", $id );
         $query=$this->db->update( "user", $data );
+        $query1=$this->db->query("SELECT `id`, `name`, `email`, `accesslevel`, `timestamp`, `status`, `image`, `username`, `socialid`, `logintype`, `json`, `dob`, `street`, `address`, `city`, `state`, `pincode`, `facebook`, `twitter`, `google`, `country`, `instagram`, `contact` FROM `user` WHERE `id`='$id'")->row();
         if($query)
-        return  1;
+        return  $query1;
         else
         return  0;
     }
