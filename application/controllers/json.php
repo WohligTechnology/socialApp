@@ -212,7 +212,7 @@ $elements[4]=new stdClass();
 $elements[4]->field="`webapp_galleryimage`.`image`";
 $elements[4]->sort="1";
 $elements[4]->header="Image";
-$elements[4]->alias="image";
+$elements[4]->alias="src";
 
 $search=$this->input->get_post("search");
 $pageno=$this->input->get_post("pageno");
