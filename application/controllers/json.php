@@ -1156,6 +1156,23 @@ $data["message"]=$this->restapi_model->getappconfig();
         }
         $this->load->view("json", $data);
     }
+ public function editprofile() {
+       $data = json_decode(file_get_contents('php://input'), true);
+         $id=$data['id'];
+         $name=$data['name'];
+         $email=$data['email'];
+         $dob=$data['dob'];
+        $contact=$data['contact'];
+        $location=$data['location'];
+        if(empty($data))
+        {
+		$data['message']=0;
+		}
+	    else{
+        $data["message"] = $this->restapi_model->editprofile($id,$name,$email,$dob,$contact,$location);
+        }
+        $this->load->view("json", $data);
+    }
  
   public function forgotpassword()
     {

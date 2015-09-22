@@ -84,6 +84,16 @@ return  1;
         else
         return  1;
     }
+    public function editprofile($id,$name,$email,$dob,$contact,$location)
+    {
+        $data=array("name" => $name,"email" => $email,"dob" => $dob,"contact" => $contact,"address" => $location);
+        $this->db->where( "id", $id );
+        $query=$this->db->update( "user", $data );
+        if($query)
+        return  1;
+        else
+        return  0;
+    }
     public function searcharticletitle($searchelement){
         $query=$this->db->query("SELECT `id`, `status`, `title`, `json`, `content`, `timestamp`, `image` FROM `webapp_articles` WHERE `title` LIKE '%$searchelement%'")->result();
         return $query;

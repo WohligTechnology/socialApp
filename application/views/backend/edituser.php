@@ -8,7 +8,8 @@
             <div class="form-group">
                 <label class="col-sm-2 control-label" for="normal-field">Email</label>
                 <div class="col-sm-4">
-                    <div class="text-pad"><?php echo $before->email; ?></div>
+                    <div class="text-pad">
+                        <?php echo $before->email; ?></div>
                 </div>
             </div>
             <div class="form-group">
@@ -17,7 +18,7 @@
                     <input type="text" id="normal-field" class="form-control" name="name" value="<?php echo set_value('name',$before->name);?>">
                 </div>
             </div>
-     
+
 
             <div class=" form-group">
                 <label class="col-sm-2 control-label" for="normal-field">Email</label>
@@ -43,12 +44,12 @@
                     <input type="text" id="normal-field" class="form-control" name="socialid" value="<?php echo set_value('socialid',$before->socialid);?>">
                 </div>
             </div>
-                 <div class=" form-group">
-                            <label class="col-sm-2 control-label" for="normal-field">Contact</label>
-                            <div class="col-sm-4">
-                                <input type="text" id="normal-field" class="form-control" name="contact" value="<?php echo set_value('contact',$before->contact);?>">
-                            </div>
-                        </div>
+            <div class=" form-group">
+                <label class="col-sm-2 control-label" for="normal-field">Contact</label>
+                <div class="col-sm-4">
+                    <input type="text" id="normal-field" class="form-control" name="contact" value="<?php echo set_value('contact',$before->contact);?>">
+                </div>
+            </div>
 
             <div class=" form-group">
                 <label class="col-sm-2 control-label">logintype</label>
@@ -71,21 +72,17 @@
                 </div>
             </div>
 
- 
+
 
             <div class=" form-group">
                 <label class="col-sm-2 control-label" for="normal-field">Image</label>
                 <div class="col-sm-4">
-                   <span class="pull-left btn btn-default btn-file">
+                    <span class="pull-left btn btn-default btn-file">
 											Browse... <input type="file" id="normal-field" class="form-control" name="image" value="<?php echo set_value('image',$before->image);?>">
 											</span>
-                   <?php if($before->image == "")
-						 { }
-						 else
-						 { ?>
-							<img src="<?php echo base_url('uploads')."/".$before->image; ?>" width="140px" height="140px">
-						<?php }
-					?>
+                    <?php if($before->image == "") { } else { ?>
+                    <img src="<?php echo base_url('uploads')." / ".$before->image; ?>" width="140px" height="140px">
+                    <?php } ?>
                 </div>
             </div>
 
@@ -95,7 +92,13 @@
                     <input type="text" id="normal-field" class="form-control" name="json" value="<?php echo set_value('json',$before->json);?>">
                 </div>
             </div>
-
+            <div class=" form-group">
+                <label class="col-sm-2 control-label" for="normal-field">address</label>
+                <div class="col-sm-8">
+                    <textarea name="address" id="" cols="20" rows="10" class="form-control tinymce">
+                        <?php echo set_value( 'address',$before->address);?></textarea>
+                </div>
+            </div>
             <div class=" form-group">
                 <label class="col-sm-2 control-label">&nbsp;</label>
                 <div class="col-sm-4">

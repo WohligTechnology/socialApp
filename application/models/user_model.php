@@ -32,7 +32,7 @@ class User_model extends CI_Model
 	}
 	
 	
-	public function create($name,$email,$password,$accesslevel,$status,$socialid,$logintype,$image,$json,$contact)
+	public function create($name,$email,$password,$accesslevel,$status,$socialid,$logintype,$image,$json,$contact,$address)
 	{
 		$data  = array(
 			'name' => $name,
@@ -44,7 +44,8 @@ class User_model extends CI_Model
             'image'=> $image,
             'json'=> $json,
 			'logintype' => $logintype,
-			'contact' => $contact
+			'contact' => $contact,
+			'address' => $address
 		);
 		$query=$this->db->insert( 'user', $data );
 		$id=$this->db->insert_id();
@@ -88,7 +89,7 @@ class User_model extends CI_Model
 		return $query;
 	}
 	
-	public function edit($id,$name,$email,$password,$accesslevel,$status,$socialid,$logintype,$image,$json,$contact)
+	public function edit($id,$name,$email,$password,$accesslevel,$status,$socialid,$logintype,$image,$json,$contact,$address)
 	{
 		$data  = array(
 			'name' => $name,
@@ -99,7 +100,8 @@ class User_model extends CI_Model
             'image'=> $image,
             'json'=> $json,
 			'logintype' => $logintype,
-			'contact' => $contact
+			'contact' => $contact,
+			'address' => $address
             
 		);
 		if($password != "")
