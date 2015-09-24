@@ -17,13 +17,14 @@ return  1;
         return $query;
     }    
     public function signup($username,$email,$password,$dob){
-$data=array("username" => $username,"email" => $email,"password" => md5($password),"dob" => $dob);
-$query=$this->db->insert( "user", $data );
-$id=$this->db->insert_id();
-if(!$query)
-return  0;
-else
-return  1;
+		$data=array("username" => $username,"email" => $email,"password" => md5($password),"dob" => $dob);
+		$query=$this->db->insert( "user", $data );
+		$id=$this->db->insert_id();
+	    $newdata=$this->db->query("SELECT * FROM `user` WHERE `id`='$id'")->row();
+		if(!$query)
+		return false;
+		else
+		return $newdata;
     }
     public function signin($username,$password){
      $password=md5($password);
@@ -33,17 +34,17 @@ return  1;
             $user=$query->row();
             $user=$user->id;
             
-
-            $newdata = array(
-                'username'     => $username,
-                'password' => $password,
-                'logged_in' => true,
-                'id'=> $user
-            );
-
+		   $newdata=$this->db->query("SELECT * FROM `user` WHERE `id`='$user'")->row();
+//            $newdata = array(
+//                'username'     => $username,
+//                'password' => $password,
+//                'logged_in' => true,
+//                'id'=> $user
+//            );
+		   
             $this->session->set_userdata($newdata);
             //print_r($newdata);
-            return true;
+            return $newdata;
         }
         else
         return false;
