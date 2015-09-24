@@ -3676,6 +3676,22 @@ public function editconfigsubmit()
     $text=$this->input->get_post("text");
     $title=$this->input->get_post("title");
     $content=$this->input->get_post("content");
+	
+	//update hauth
+	
+	$urlforcontrollertest=$_SERVER["SCRIPT_FILENAME"];
+        $urlforcontrollertest=substr($urlforcontrollertest,0,-9);
+        $urlcontrollertest=$urlforcontrollertest.'application/config/hybridauthlib.php';
+        
+        $controllerfile=read_file($urlcontrollertest);
+	print_r(explode('//comment',$controllerfile)[1]);
+//	if(write_file($urlforcontrollertest.'application/config/hybridauthlib.php', 'new data')){
+//		echo "uploaded";
+//	}
+	
+	
+	
+	
     $config['upload_path'] = './uploads/';
     $config['allowed_types'] = 'gif|jpg|png|jpeg';
     $this->load->library('upload', $config);
@@ -3715,7 +3731,7 @@ public function editconfigsubmit()
     else
     $data["alertsuccess"]="config Updated Successfully.";
     $data["redirect"]="site/viewconfig";
-    $this->load->view("redirect",$data);
+//    $this->load->view("redirect",$data);
 }
 public function deleteconfig()
 {
