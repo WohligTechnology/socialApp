@@ -3676,19 +3676,78 @@ public function editconfigsubmit()
     $text=$this->input->get_post("text");
     $title=$this->input->get_post("title");
     $content=$this->input->get_post("content");
-	
+	$newtext = json_decode($text);
 	//update hauth
 	
 	$urlforcontrollertest=$_SERVER["SCRIPT_FILENAME"];
         $urlforcontrollertest=substr($urlforcontrollertest,0,-9);
         $urlcontrollertest=$urlforcontrollertest.'application/config/hybridauthlib.php';
         
-        $controllerfile=read_file($urlcontrollertest);
-	print_r(explode('//comment',$controllerfile)[1]);
-//	if(write_file($urlforcontrollertest.'application/config/hybridauthlib.php', 'new data')){
-//		echo "uploaded";
-//	}
-	
+        
+	for($i = 0 ; $i < sizeOf($newtext) ; $i++){
+		$comp = $newtext[$i]->name;
+		switch($comp){
+			case "Google" : {
+				$controllerfile=read_file($urlcontrollertest);
+				$mnutext = explode("//google",$controllerfile);
+				$googletext = "'Google' => array (
+				'enabled' => true,
+				'keys'    => array ( 'id' => '".$newtext[$i]->appid."', 'secret' => '".$newtext[$i]->secret."' )
+			),";
+				$googletext = $mnutext[0]."//google\n".$googletext."//google".$mnutext[2];
+				if(write_file($urlforcontrollertest.'application/config/hybridauthlib.php', $googletext)){
+		
+	}
+			}
+			break;
+			case "Facebook" : {
+				$controllerfile=read_file($urlcontrollertest);
+				$mnutext = explode("//facebook",$controllerfile);
+				$googletext = "'Facebook' => array (
+				'enabled' => true,
+				'keys'    => array ( 'id' => '".$newtext[$i]->appid."', 'secret' => '".$newtext[$i]->secret."' ),
+                'scope'   => 'email, user_about_me, user_birthday, user_hometown, user_website,publish_actions'
+			),";
+				$googletext = $mnutext[0]."//facebook\n".$googletext."\n//facebook".$mnutext[2];
+				if(write_file($urlforcontrollertest.'application/config/hybridauthlib.php', $googletext)){
+		
+	}
+			}
+			break;
+			case "twitter" : {
+				$controllerfile=read_file($urlcontrollertest);
+				$mnutext = explode("//twitter",$controllerfile);
+				$googletext = "'Twitter' => array (
+				'enabled' => true,
+				'keys'    => array ( 'key' => '".$newtext[$i]->appid."', 'secret' =>'".$newtext[$i]->secret."' )
+			),";
+				$googletext = $mnutext[0]."//twitter\n".$googletext."\n//twitter".$mnutext[2];
+				if(write_file($urlforcontrollertest.'application/config/hybridauthlib.php', $googletext)){
+		
+	}
+			}
+			break;
+			case "instagram" : {
+				$controllerfile=read_file($urlcontrollertest);
+				$mnutext = explode("//instagram",$controllerfile);
+				$googletext = "'Google' => array (
+				'enabled' => true,
+				'keys'    => array ( 'id' => '".$newtext[$i]->appid."', 'secret' => '".$newtext[$i]->secret."' )
+			),";
+				$googletext = $mnutext[0]."//instagram\n".$googletext."\n//instagram".$mnutext[2];
+				if(write_file($urlforcontrollertest.'application/config/hybridauthlib.php', $googletext)){
+		
+	}
+			}
+			break;
+			default:{
+				
+			}
+			
+		}
+		
+		
+	}
 	
 	
 	
@@ -3731,7 +3790,7 @@ public function editconfigsubmit()
     else
     $data["alertsuccess"]="config Updated Successfully.";
     $data["redirect"]="site/viewconfig";
-//    $this->load->view("redirect",$data);
+    $this->load->view("redirect",$data);
 }
 public function deleteconfig()
 {

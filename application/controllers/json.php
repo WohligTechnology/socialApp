@@ -1241,4 +1241,15 @@ $data["message"]=$this->restapi_model->getappconfig();
         $data['message']=$this->restapi_model->searchelement($searchelement);
         $this->load->view("json", $data); 
  }
+ public function profileimageupload(){
+	 $date = new DateTime();
+        $imageName = "image-".rand(0, 100000)."".$date->getTimestamp().".jpg";
+        if(move_uploaded_file($_FILES["file"]["tmp_name"], "./uploads/".$imageName)){
+       		$data["message"]=$imageName;
+            	$this->load->view("json",$data); 
+        }else{
+        	$data["message"]="false";
+            	$this->load->view("json",$data); 
+        }
+ }
 } ?>
